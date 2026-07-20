@@ -1,0 +1,288 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Playfair Display', ui-serif, Georgia, serif;
+
+    --color-jail-black: #171717;
+    --color-charcoal: #252525;
+    --color-deep-charcoal: #111111;
+    --color-concrete: #D6D1C7;
+    --color-heritage-cream: #F3EFE6;
+    --color-paper-white: #FAF8F2;
+    --color-rust: #A7472A;
+    --color-brick: #77382C;
+    --color-heritage-brown: #604838;
+    --color-muted-gold: #B6955A;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    ::selection {
+        background: #A7472A;
+        color: #FAF8F2;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@layer components {
+    .section-pad {
+        @apply py-20 sm:py-24 lg:py-28;
+    }
+
+    .page-hero {
+        @apply min-h-[480px] sm:min-h-[540px];
+    }
+
+    .section-label {
+        @apply text-xs font-black uppercase tracking-[0.22em] text-rust;
+    }
+
+    .section-image {
+        @apply h-full w-full object-cover object-center;
+    }
+
+    .image-credit {
+        @apply text-xs font-semibold leading-5 text-charcoal/55;
+    }
+
+    .image-credit a {
+        @apply underline decoration-rust/35 underline-offset-2 transition hover:text-rust;
+    }
+
+    .image-credit--compact {
+        @apply text-[0.68rem] uppercase tracking-[0.12em];
+    }
+
+    .intro-media-grid {
+        @apply grid gap-5;
+    }
+
+    .skip-link {
+        @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-muted-gold focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-deep-charcoal;
+    }
+
+    .site-header {
+        background: linear-gradient(180deg, rgba(17, 17, 17, 0.68), rgba(17, 17, 17, 0));
+    }
+
+    .site-header.is-scrolled,
+    body:not(.home-page) .site-header {
+        @apply border-b border-paper-white/10 bg-deep-charcoal/95 shadow-xl shadow-deep-charcoal/20 backdrop-blur;
+    }
+
+    .nav-link {
+        @apply rounded-full px-3 py-2 text-sm font-bold text-paper-white/85 transition hover:bg-paper-white/10 hover:text-paper-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
+    }
+
+    .nav-link.is-active {
+        @apply bg-paper-white/10 text-muted-gold;
+    }
+
+    .mobile-drawer.is-open {
+        transform: translateX(0);
+    }
+
+    .mobile-tab {
+        @apply flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl text-charcoal/70 transition hover:bg-heritage-cream hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
+    }
+
+    .mobile-tab.is-active {
+        @apply bg-heritage-cream text-rust;
+    }
+
+    .field-label {
+        @apply grid gap-2 text-sm font-bold text-deep-charcoal;
+    }
+
+    .field-input {
+        @apply min-h-12 max-w-full rounded-2xl border border-concrete bg-paper-white px-4 py-3 text-sm font-semibold text-deep-charcoal shadow-sm outline-none transition placeholder:text-charcoal/45 focus:border-muted-gold focus:ring-4 focus:ring-muted-gold/20;
+    }
+
+    .field-error {
+        @apply min-h-5 text-xs font-bold text-rust;
+    }
+
+    .toggle-chip {
+        @apply inline-flex min-h-10 items-center justify-center rounded-full border border-paper-white/15 bg-paper-white/10 px-4 py-2 text-sm font-bold text-paper-white transition hover:bg-paper-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
+    }
+
+    .toggle-chip.is-active {
+        @apply border-muted-gold bg-muted-gold text-deep-charcoal;
+    }
+
+    .view-toggle {
+        @apply grid h-12 w-12 place-items-center rounded-full border border-concrete bg-paper-white text-charcoal transition hover:border-muted-gold hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
+    }
+
+    .view-toggle.is-active {
+        @apply border-rust bg-rust text-paper-white;
+    }
+
+    .map-board {
+        @apply relative overflow-hidden rounded-3xl border border-muted-gold/30 bg-concrete shadow-inner;
+        background-image:
+            linear-gradient(90deg, rgba(17, 17, 17, 0.08) 1px, transparent 1px),
+            linear-gradient(rgba(17, 17, 17, 0.08) 1px, transparent 1px),
+            radial-gradient(circle at 25% 28%, rgba(250, 248, 242, 0.9) 0 10%, transparent 10.5%),
+            radial-gradient(circle at 74% 68%, rgba(167, 71, 42, 0.2) 0 12%, transparent 12.5%),
+            linear-gradient(135deg, #F3EFE6, #D6D1C7 58%, #B6955A);
+        background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100%, 100% 100%;
+    }
+
+    .map-board::before,
+    .map-board::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        background: rgba(96, 72, 56, 0.28);
+        transform: rotate(-18deg);
+    }
+
+    .map-board::before {
+        width: 75%;
+        height: 18px;
+        left: 8%;
+        top: 42%;
+    }
+
+    .map-board::after {
+        width: 52%;
+        height: 14px;
+        right: -5%;
+        top: 62%;
+        transform: rotate(26deg);
+    }
+
+    .map-route-line {
+        position: absolute;
+        inset: 15% 12% 18% 12%;
+        border: 4px dashed rgba(183, 149, 90, 0.95);
+        border-left-width: 0;
+        border-bottom-width: 0;
+        border-radius: 42% 26% 50% 18%;
+        transform: rotate(-8deg);
+    }
+
+    .map-marker {
+        @apply absolute z-10 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-paper-white bg-rust text-xs font-black text-paper-white shadow-lg shadow-deep-charcoal/30 transition hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold sm:h-11 sm:w-11 sm:text-sm;
+    }
+
+    .map-marker.is-completed {
+        @apply bg-deep-charcoal text-muted-gold;
+    }
+
+    .map-marker.is-selected {
+        @apply scale-125 ring-4 ring-muted-gold/40;
+    }
+
+    .tour-card.is-completed {
+        @apply border-muted-gold;
+    }
+
+    .tour-card.is-completed .completion-pill {
+        @apply inline-flex;
+    }
+
+    .mark-complete-btn.is-completed {
+        @apply border-deep-charcoal bg-deep-charcoal text-paper-white;
+    }
+
+    .prose-content {
+        @apply max-w-none text-charcoal;
+    }
+
+    .prose-content h2 {
+        @apply mt-10 font-serif text-3xl font-semibold text-deep-charcoal first:mt-0;
+    }
+
+    .prose-content p,
+    .prose-content li {
+        @apply mt-4 text-base leading-8 text-charcoal/75;
+    }
+
+    .prose-content ul {
+        @apply mt-4 list-disc space-y-2 pl-6;
+    }
+
+    .audio-btn {
+        @apply grid h-11 w-11 place-items-center rounded-full border border-concrete bg-heritage-cream text-deep-charcoal transition hover:border-muted-gold hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
+    }
+
+    .audio-btn.is-primary {
+        @apply h-14 w-14 bg-rust text-paper-white hover:bg-brick hover:text-paper-white;
+    }
+
+    .sticky-audio {
+        @apply fixed inset-x-3 bottom-24 z-30 mx-auto max-w-xl;
+    }
+
+    .lightbox-arrow {
+        @apply absolute z-10 grid h-11 w-11 place-items-center rounded-full border border-paper-white/20 bg-paper-white/10 text-paper-white backdrop-blur transition hover:bg-paper-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold sm:h-12 sm:w-12;
+    }
+
+    .route-option:has(input:checked) {
+        @apply border-rust bg-paper-white shadow-lg shadow-rust/10;
+    }
+
+    .gallery-card.is-hidden,
+    .event-card.is-hidden,
+    .tour-card.is-hidden,
+    .map-marker.is-hidden {
+        display: none;
+    }
+
+    .bar-pattern {
+        background-image: repeating-linear-gradient(90deg, transparent 0 22px, rgba(250, 248, 242, 0.18) 22px 25px, transparent 25px 58px);
+    }
+
+    .heritage-pattern {
+        background-image:
+            linear-gradient(45deg, rgba(183, 149, 90, 0.18) 25%, transparent 25%),
+            linear-gradient(-45deg, rgba(183, 149, 90, 0.18) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, rgba(183, 149, 90, 0.18) 75%),
+            linear-gradient(-45deg, transparent 75%, rgba(183, 149, 90, 0.18) 75%);
+        background-size: 38px 38px;
+        background-position: 0 0, 0 19px, 19px -19px, -19px 0;
+    }
+
+    @media (max-width: 639px) {
+        .section-pad {
+            @apply py-16;
+        }
+
+        .toggle-chip {
+            @apply min-h-11 flex-1 px-3 text-center;
+        }
+
+        .lightbox-arrow.left-0 {
+            left: 0.25rem;
+        }
+
+        .lightbox-arrow.right-0 {
+            right: 0.25rem;
+        }
+    }
+}
