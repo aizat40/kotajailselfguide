@@ -33,7 +33,7 @@
                 <div class="mt-8 flex max-w-xl items-center gap-4 rounded-3xl border border-paper-white/15 bg-paper-white/10 p-4 backdrop-blur">
                     <img
                         src="{{ asset($sectionImages['home_features']['image']) }}"
-                        alt="Self-Guide Kota Jail team field-photo credit image"
+                        alt="Weathered Kota Jail wall with QR visitor signage at Ayer Molek"
                         class="h-14 w-14 shrink-0 rounded-full object-cover"
                         style="object-position: {{ $sectionImages['home_features']['position'] }};"
                         width="{{ $sectionImages['home_features']['width'] }}"

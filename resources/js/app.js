@@ -285,7 +285,6 @@ function updateImageCredit(target, item) {
     }
 
     target.classList.remove('hidden');
-    target.append(document.createTextNode('Image: '));
 
     if (item.image_source_url) {
         const link = document.createElement('a');
@@ -496,6 +495,7 @@ function initLightbox() {
     const title = $('[data-lightbox-title]', lightbox);
     const category = $('[data-lightbox-category]', lightbox);
     const caption = $('[data-lightbox-caption]', lightbox);
+    const credit = $('[data-lightbox-credit]', lightbox);
     let activeIndex = 0;
     let activeCards = [];
 
@@ -523,8 +523,11 @@ function initLightbox() {
         title.textContent = $('h3', card)?.textContent || 'Gallery image';
         category.textContent = card.dataset.galleryCategory || 'Gallery';
         const visibleCaption = card.querySelector('figcaption p:not(.image-credit)')?.textContent || '';
-        const credit = card.dataset.galleryCredit ? ` Image: ${card.dataset.galleryCredit}` : '';
-        caption.textContent = `${visibleCaption}${credit}`;
+        caption.textContent = visibleCaption;
+        if (credit) {
+            credit.textContent = card.dataset.galleryCredit || '';
+            credit.classList.toggle('hidden', !card.dataset.galleryCredit);
+        }
     };
 
     const move = (direction) => {

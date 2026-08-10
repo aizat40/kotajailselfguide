@@ -6,7 +6,7 @@
     <x-page-hero
         eyebrow="Visual archive"
         title="Photographs, textures, cells, signs, and memory traces."
-        lead="Use these img_update photographs as an accessible visual archive before, during, or after the Kota Jail route."
+        lead="Use these photographs as an accessible visual archive before, during, or after the Kota Jail route."
         :image="$heroImage['image']"
         :alt="$heroImage['alt']"
         :position="$heroImage['position']"
@@ -66,7 +66,10 @@
                     <img src="" alt="" class="max-h-full max-w-full rounded-3xl object-contain shadow-2xl" data-lightbox-image>
                     <button type="button" class="lightbox-arrow right-0" data-lightbox-next aria-label="Next image"><x-icon name="arrow-right" class="h-5 w-5" /></button>
                 </div>
-                <p class="py-4 text-center text-sm leading-7 text-concrete" data-lightbox-caption>Caption</p>
+                <div class="py-4 text-center">
+                    <p class="text-sm leading-7 text-concrete" data-lightbox-caption>Caption</p>
+                    <p class="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-muted-gold" data-lightbox-credit></p>
+                </div>
             </div>
         </div>
     </section>
