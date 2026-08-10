@@ -7,7 +7,7 @@
         ['label' => 'Start Tour', 'route' => 'tour.start'],
         ['label' => 'Tour Map', 'route' => 'tour.map'],
         ['label' => 'Locations', 'route' => 'locations.index'],
-        ['label' => 'Events', 'route' => 'events.index'],
+        ['label' => 'Gallery', 'route' => 'gallery'],
         ['label' => 'Visitor Info', 'route' => 'visitor.info'],
     ];
 @endphp
@@ -16,10 +16,10 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a href="{{ route('home') }}" class="group flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold" aria-label="Kota Jail home">
-            <span class="grid h-11 w-11 place-items-center rounded-full border border-muted-gold/70 bg-deep-charcoal text-sm font-bold tracking-[0.2em] text-muted-gold">KJ</span>
+            <span class="grid h-11 w-11 place-items-center rounded-full border border-muted-gold/70 bg-deep-charcoal text-sm font-bold tracking-[0.2em] text-muted-gold">SG</span>
             <span class="leading-tight">
-                <span class="block font-serif text-xl font-semibold text-paper-white">Kota Jail</span>
-                <span class="block text-xs uppercase tracking-[0.22em] text-concrete">Johor Bahru</span>
+                <span class="block font-serif text-xl font-semibold text-paper-white">Self-Guide Kota Jail</span>
+                <span class="block text-xs uppercase tracking-[0.22em] text-concrete">Ayer Molek</span>
             </span>
         </a>
 
@@ -49,8 +49,8 @@
     <div id="mobile-menu" class="mobile-drawer fixed inset-y-0 right-0 z-50 w-full max-w-sm translate-x-full overflow-y-auto bg-deep-charcoal px-6 py-6 text-paper-white shadow-2xl transition duration-300 xl:hidden" data-mobile-drawer aria-hidden="true">
         <div class="flex items-center justify-between">
             <div>
-                <p class="font-serif text-2xl font-semibold">Kota Jail</p>
-                <p class="text-sm text-concrete">Self-guided tour</p>
+                <p class="font-serif text-2xl font-semibold">Self-Guide Kota Jail</p>
+                <p class="text-sm text-concrete">Ayer Molek route</p>
             </div>
             <button type="button" class="grid h-11 w-11 place-items-center rounded-full border border-paper-white/20 text-paper-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold" data-mobile-close>
                 <span class="sr-only">Close menu</span>
@@ -65,7 +65,6 @@
                 </a>
             @endforeach
             <a href="{{ route('visit.plan') }}" class="rounded-xl px-4 py-3 text-base font-semibold text-paper-white hover:bg-paper-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold">Plan Your Visit</a>
-            <a href="{{ route('gallery') }}" class="rounded-xl px-4 py-3 text-base font-semibold text-paper-white hover:bg-paper-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold">Gallery</a>
             <a href="{{ route('contact') }}" class="rounded-xl px-4 py-3 text-base font-semibold text-paper-white hover:bg-paper-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold">Contact</a>
         </nav>
 

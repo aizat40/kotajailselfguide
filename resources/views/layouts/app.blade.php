@@ -69,8 +69,8 @@
         <div class="w-full max-w-md rounded-3xl bg-paper-white p-6 shadow-2xl">
             <div class="flex items-start justify-between gap-4">
                 <div>
-                    <p class="section-label">QR checkpoint</p>
-                    <h2 id="scan-title" class="mt-2 font-serif text-3xl font-semibold text-deep-charcoal">Scan a stop code</h2>
+                <p class="section-label">QR checkpoint</p>
+                <h2 id="scan-title" class="mt-2 font-serif text-3xl font-semibold text-deep-charcoal">Scan from your current stop</h2>
                 </div>
                 <button type="button" class="grid h-11 w-11 place-items-center rounded-full border border-concrete text-deep-charcoal" data-close-scan aria-label="Close scan modal">
                     <x-icon name="close" class="h-5 w-5" />
@@ -80,10 +80,10 @@
                 <div class="mx-auto grid h-20 w-20 place-items-center rounded-2xl bg-deep-charcoal text-muted-gold">
                     <x-icon name="qr-code" class="h-10 w-10" />
                 </div>
-                <p class="mt-5 text-base leading-7 text-charcoal">Scan a Kota Jail QR code at a tour stop to open its digital guide.</p>
-                <p class="mt-3 text-sm leading-6 text-charcoal/70">Camera scanning is intentionally left as a future enhancement for this display-only version.</p>
+                <p class="mt-5 text-base leading-7 text-charcoal">Stand beside the numbered Ayer Molek checkpoint sign and scan its QR code. The guide opens the page for the exact place you are viewing.</p>
+                <p class="mt-3 text-sm leading-6 text-charcoal/70">This display version explains the QR flow and lets you browse the stop pages manually without a database or API key.</p>
             </div>
-            <x-button :href="route('locations.index')" variant="dark" class="mt-6 w-full" icon="arrow-right">Browse tour stops</x-button>
+            <x-button :href="route('locations.index')" variant="dark" class="mt-6 w-full" icon="arrow-right">Browse Checkpoints</x-button>
         </div>
     </div>
 

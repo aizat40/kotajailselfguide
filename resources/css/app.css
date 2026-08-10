@@ -106,11 +106,11 @@
     }
 
     .mobile-tab {
-        @apply flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl text-charcoal/70 transition hover:bg-heritage-cream hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
+        @apply flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl text-paper-white/75 transition hover:bg-paper-white/10 hover:text-muted-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
     }
 
     .mobile-tab.is-active {
-        @apply bg-heritage-cream text-rust;
+        @apply bg-rust/25 text-muted-gold;
     }
 
     .field-label {
@@ -284,5 +284,31 @@
         .lightbox-arrow.right-0 {
             right: 0.25rem;
         }
+    }
+}
+
+@media print {
+    body {
+        background: #fff !important;
+    }
+
+    .site-header,
+    footer,
+    .mobile-bottom-nav,
+    [data-back-to-top],
+    .page-hero,
+    .print-feedback-sheet button {
+        display: none !important;
+    }
+
+    .print-feedback-sheet {
+        border: 1px solid #111 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+        color: #111 !important;
+    }
+
+    .print-feedback-sheet span {
+        min-height: 42px;
     }
 }

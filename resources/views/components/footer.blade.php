@@ -11,8 +11,8 @@
         'Visit' => [
             ['label' => 'Plan Your Visit', 'route' => 'visit.plan'],
             ['label' => 'Visitor Information', 'route' => 'visitor.info'],
-            ['label' => 'Events', 'route' => 'events.index'],
-            ['label' => 'Gallery', 'route' => 'gallery'],
+            ['label' => 'Visual Archive', 'route' => 'gallery'],
+            ['label' => 'Contact', 'route' => 'contact'],
         ],
         'Support' => [
             ['label' => 'Contact', 'route' => 'contact'],
@@ -28,10 +28,10 @@
         <div class="grid gap-10 lg:grid-cols-[1.2fr_2fr]">
             <div>
                 <div class="flex items-center gap-3">
-                    <span class="grid h-12 w-12 place-items-center rounded-full border border-muted-gold/70 text-sm font-bold tracking-[0.2em] text-muted-gold">KJ</span>
+                    <span class="grid h-12 w-12 place-items-center rounded-full border border-muted-gold/70 text-sm font-bold tracking-[0.2em] text-muted-gold">SG</span>
                     <div>
-                        <p class="font-serif text-2xl font-semibold">Kota Jail</p>
-                        <p class="text-sm uppercase tracking-[0.22em] text-concrete">Art, Heritage, Culture</p>
+                        <p class="font-serif text-2xl font-semibold">Self-Guide Kota Jail</p>
+                        <p class="text-sm uppercase tracking-[0.22em] text-concrete">Ayer Molek Heritage Route</p>
                     </div>
                 </div>
                 <p class="mt-6 max-w-md text-sm leading-7 text-concrete">{{ $site['description'] }}</p>
@@ -67,7 +67,7 @@
                     <option value="en">English</option>
                     <option value="ms">Bahasa Malaysia</option>
                 </select>
-                <p>© {{ date('Y') }} Kota Jail. All rights reserved.</p>
+                <p>© {{ date('Y') }} Self-Guide Kota Jail. All rights reserved.</p>
             </div>
         </div>
     </div>

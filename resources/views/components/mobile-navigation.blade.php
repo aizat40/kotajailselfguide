@@ -1,5 +1,5 @@
-<nav class="fixed inset-x-3 bottom-3 z-40 rounded-3xl border border-deep-charcoal/10 bg-paper-white/95 p-2 shadow-2xl shadow-deep-charcoal/20 backdrop-blur lg:hidden" aria-label="Mobile bottom navigation">
-    <div class="grid grid-cols-5 items-end gap-1 text-xs font-semibold text-charcoal">
+<nav class="fixed inset-x-3 bottom-3 z-40 rounded-3xl border border-paper-white/10 bg-deep-charcoal/95 p-2 shadow-2xl shadow-deep-charcoal/40 backdrop-blur lg:hidden" aria-label="Mobile bottom navigation">
+    <div class="grid grid-cols-5 items-end gap-1 text-xs font-semibold text-paper-white">
         <a href="{{ route('home') }}" class="mobile-tab {{ request()->routeIs('home') ? 'is-active' : '' }}">
             <x-icon name="home" class="h-5 w-5" />
             <span>Home</span>

@@ -4,15 +4,19 @@ $imageMetadata = require __DIR__.'/kotajail-images.php';
 
 return [
     'site' => [
-        'name' => 'Kota Jail',
-        'tagline' => 'Johor Bahru Heritage Experience',
-        'description' => 'A self-guided digital tour for Kota Jail, the former Ayer Molek Prison in Johor Bahru, Malaysia.',
+        'name' => 'Self-Guide Kota Jail',
+        'tagline' => 'Ayer Molek Self-Guided Heritage Route',
+        'description' => 'A mobile-first self-guided website for Kota Jail at the former Ayer Molek Prison in Johor Bahru, Malaysia.',
         'keywords' => 'Kota Jail Johor, Kota Jail Johor Bahru, Kota Jail self-guided tour, Ayer Molek Prison, Johor Bahru heritage attraction, Johor Bahru historical site, Heritage tourism Johor, Art and culture Johor Bahru',
-        'address' => 'Penjara (lama) Ayer Molek, Jalan Ayer Molek, 80888 Johor Bahru, Malaysia',
+        'address' => 'Kota Jail, Penjara (Lama) Ayer Molek, Jalan Ayer Molek, 80888 Johor Bahru, Johor, Malaysia',
         'email' => 'hello@kotajail.com',
         'phone' => '+6016-721 5646',
         'hours' => 'Open daily, 10:00 AM - 10:00 PM',
         'established' => '1883',
+        'max_duration' => '90 minutes',
+        'purpose' => 'This website exists to help visitors explore Kota Jail independently with clear route guidance, QR checkpoint context, historical memory prompts, and visual archives while walking through Ayer Molek.',
+        'credit_name' => 'Self-Guide Kota Jail Team',
+        'collaboration' => 'Polytechnic Alumni',
         'image' => $imageMetadata['sections']['hero']['image'],
         'alt' => $imageMetadata['sections']['hero']['alt'],
         'image_credit' => $imageMetadata['sections']['hero']['credit'],
@@ -30,42 +34,55 @@ return [
     ],
 
     'stats' => [
-        ['label' => 'Established', 'value' => '1883'],
+        ['label' => 'Year opened', 'value' => '1883'],
         ['label' => 'Tour stops', 'value' => '10'],
-        ['label' => 'Suggested pace', 'value' => '60 min'],
-        ['label' => 'Open daily', 'value' => '10am-10pm'],
+        ['label' => 'Max duration', 'value' => '90 min'],
+        ['label' => 'Location', 'value' => 'Ayer Molek'],
+    ],
+
+    'partners' => [
+        [
+            'label' => 'In Collaboration With',
+            'name' => 'Polytechnic Alumni',
+            'description' => 'Collaborative support for the self-guided heritage experience.',
+        ],
+        [
+            'label' => 'Site Context',
+            'name' => 'Kota Jail Ayer Molek',
+            'description' => 'Former prison site interpreted through history, memory, and visitor navigation.',
+        ],
+        [
+            'label' => 'Produced By',
+            'name' => 'Self-Guide Kota Jail Team',
+            'description' => 'Digital route, visual archive, and visitor information design.',
+        ],
     ],
 
     'features' => [
         [
             'icon' => 'map',
-            'title' => 'Interactive Map',
-            'description' => 'Follow an easy route between editable stops with a map view and a list view for accessible browsing.',
-        ],
-        [
-            'icon' => 'headphones',
-            'title' => 'Audio Guide',
-            'description' => 'Use a designed sample audio interface with transcripts and graceful messaging when audio files are not yet added.',
+            'title' => 'Main Route',
+            'description' => 'Start at Ayer Molek, follow the numbered route, and move through each checkpoint in a clear visitor order.',
         ],
         [
             'icon' => 'qr-code',
             'title' => 'QR Checkpoints',
-            'description' => 'A visitor-ready QR explanation flow supports future on-site codes without needing a backend today.',
+            'description' => 'Scan the code beside a stop sign to open the exact page for the place you are standing in front of.',
         ],
         [
             'icon' => 'check-circle',
-            'title' => 'Tour Progress',
-            'description' => 'Mark places as completed and resume from the next recommended stop using browser local storage.',
+            'title' => 'Simple Progress',
+            'description' => 'Mark completed stops locally on your phone and continue to the next route point without login or a database.',
         ],
         [
-            'icon' => 'languages',
-            'title' => 'Bilingual Content',
-            'description' => 'Language preferences are saved locally and the structure is ready for English and Bahasa Malaysia copy.',
+            'icon' => 'camera',
+            'title' => 'Visual Archives',
+            'description' => 'Use the gallery to compare corridors, cell doors, signage, textures, and preserved displays.',
         ],
         [
             'icon' => 'accessibility',
-            'title' => 'Accessible Experience',
-            'description' => 'Large touch targets, keyboard states, transcripts, list alternatives, and reduced-motion support are built in.',
+            'title' => 'Accessible Memory',
+            'description' => 'Large buttons, readable text, image-led interpretation, and list views support visitors who prefer a gentler pace.',
         ],
     ],
 
@@ -95,7 +112,7 @@ return [
             'stops' => 10,
             'distance' => 'Walking distance to be verified',
             'difficulty' => 'Moderate',
-            'description' => 'The fullest visitor route, designed for slower reading, photographs, and reflection.',
+            'description' => 'The maximum self-guided route, designed for slower reading, photographs, reflection, and historical memory. Maximum trip duration: 90 minutes.',
         ],
         [
             'slug' => 'art-culture',
@@ -143,14 +160,14 @@ return [
             'image_position' => $imageMetadata['stops']['main-entrance']['position'],
             'image_width' => $imageMetadata['stops']['main-entrance']['width'],
             'image_height' => $imageMetadata['stops']['main-entrance']['height'],
-            'excerpt' => 'Begin at the threshold of the former Ayer Molek Prison site and set the tone for a respectful visit.',
-            'detail' => 'This opening stop introduces Kota Jail as a Johor Bahru heritage destination shaped by history, architecture, art, and community reuse. The exact interpretive text should be reviewed with the site team before public launch.',
+            'excerpt' => 'Begin at the Ayer Molek QR checkpoint and connect your phone with the main tour route.',
+            'detail' => 'This opening stop introduces Kota Jail at Penjara (Lama) Ayer Molek. Scan the starting QR sign here to open the route page, confirm the first stop, and understand how the self-guided website supports history, navigation, and respectful observation.',
             'original_function' => 'Former entrance or arrival point, to be verified.',
             'current_function' => 'Visitor arrival, orientation, and first tour checkpoint.',
             'features' => ['Entry threshold', 'Wayfinding opportunity', 'Heritage facade character'],
-            'context' => 'Use this stop to explain how visitors should move through the site thoughtfully and observe remaining architectural details without sensationalising prison history.',
-            'facts' => ['Kota Jail is associated with the former Ayer Molek Prison.', 'The public identity of the site now includes art, heritage, and culture.', 'Specific building functions should be verified before publication.'],
-            'did_you_know' => 'A strong first stop helps visitors understand that this is a heritage experience, not a themed attraction.',
+            'context' => 'Use this stop to explain how visitors should scan the route QR, move through the site thoughtfully, and observe remaining architectural details without sensationalising prison history.',
+            'facts' => ['Kota Jail is associated with the former Ayer Molek Prison.', 'The public identity of the site now includes art, heritage, and culture.', 'The self-guided route is designed for a maximum trip duration of 90 minutes.'],
+            'did_you_know' => 'The first QR scan explains where you are standing, what to observe next, and how to continue safely.',
             'duration' => '5 min',
             'reading_time' => '3 min read',
             'accessibility' => 'Outdoor orientation point. Surface conditions and step-free access should be verified on site.',
@@ -160,7 +177,7 @@ return [
                 'title' => 'Welcome to Kota Jail',
                 'duration' => '02:15',
                 'src' => null,
-                'transcript' => 'Welcome to Kota Jail, a heritage site in Johor Bahru connected to the former Ayer Molek Prison. This sample guide invites visitors to move slowly, read carefully, and treat the place with respect.',
+                'transcript' => 'Welcome to Kota Jail at Ayer Molek. Scan each QR checkpoint from the sign or marker nearest your current stop. The page will explain what you are looking at and where to go next.',
             ],
         ],
         [
@@ -459,13 +476,13 @@ return [
             'image_width' => $imageMetadata['stops']['final-reflection-area']['width'],
             'image_height' => $imageMetadata['stops']['final-reflection-area']['height'],
             'excerpt' => 'Complete the tour with a calm summary of heritage, memory, creativity, and civic reuse.',
-            'detail' => 'The final stop gives visitors a place to consider what they have seen and how historic sites can be cared for. Replace this copy with a verified closing message if Kota Jail provides one.',
+            'detail' => 'The final stop gives visitors a place to consider what they have seen and how historic sites can be cared for. Hope you enjoy.',
             'original_function' => 'Site function to be verified.',
             'current_function' => 'Reflection and tour completion point.',
             'features' => ['Quiet pause point', 'Exit wayfinding', 'Visitor feedback opportunity'],
             'context' => 'The closing note should be thoughtful and brief, encouraging visitors to support respectful heritage tourism.',
             'facts' => ['Kota Jail is located in Johor Bahru.', 'The site is open to public visitor experiences.', 'Final visitor guidance should match current operating rules.'],
-            'did_you_know' => 'A self-guided tour can be updated quickly as new research, exhibitions, and visitor facilities are confirmed.',
+            'did_you_know' => 'Hope you enjoy. A self-guided tour can be updated as new research, exhibitions, and visitor facilities are confirmed.',
             'duration' => '5 min',
             'reading_time' => '3 min read',
             'accessibility' => 'Potential accessible finish point. Verify seating, shade, and exit route.',
@@ -475,7 +492,7 @@ return [
                 'title' => 'Completing the Visit',
                 'duration' => '02:30',
                 'src' => null,
-                'transcript' => 'Thank you for taking a thoughtful walk through Kota Jail. The site brings together history, architecture, art, culture, and community use in the heart of Johor Bahru.',
+                'transcript' => 'Thank you for taking a thoughtful walk through Kota Jail at Ayer Molek. Hope you enjoy.',
             ],
         ],
     ],
@@ -639,7 +656,7 @@ return [
 
     'visitor_info' => [
         'opening_hours' => 'Open daily, 10:00 AM - 10:00 PM',
-        'address' => 'Penjara (lama) Ayer Molek, Jalan Ayer Molek, 80888 Johor Bahru, Malaysia',
+        'address' => 'Kota Jail, Penjara (Lama) Ayer Molek, Jalan Ayer Molek, 80888 Johor Bahru, Johor, Malaysia',
         'google_maps_embed_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.517932979787!2d103.7561015!3d1.4628818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da13006a5afc1b%3A0x129a88a631961dc3!2sKOTAJAIL!5e0!3m2!1sen!2smy!4v1784473933211!5m2!1sen!2smy',
         'google_maps_contact_embed_url' => 'https://www.google.com/maps?q=Kota%20Jail%2C%20Penjara%20Lama%20Ayer%20Molek%2C%20Jalan%20Ayer%20Molek%2C%2080888%20Johor%20Bahru%2C%20Johor%2C%20Malaysia&output=embed',
         'google_maps_search_url' => 'https://www.google.com/maps/search/?api=1&query=Kota+Jail+Penjara+Lama+Ayer+Molek+Johor+Bahru',
@@ -678,6 +695,51 @@ return [
         [
             'question' => 'Can I take photographs?',
             'answer' => 'Photography rules should follow current Kota Jail guidance. Avoid restricted areas, private activities, and any signage that limits photography.',
+        ],
+    ],
+
+    'qr_instructions' => [
+        [
+            'title' => 'Stand near the numbered checkpoint',
+            'text' => 'Look for the QR sign beside the stop marker or visitor wall. The page you open should match the place directly in front of you.',
+        ],
+        [
+            'title' => 'Scan for local context',
+            'text' => 'Each scan explains where you are, what historical or architectural detail to notice, and how the stop connects to Ayer Molek.',
+        ],
+        [
+            'title' => 'Continue to the next stop',
+            'text' => 'After reading, tap Mark Completed. The guide keeps progress on this device and points you toward the next route point.',
+        ],
+    ],
+
+    'questionnaire' => [
+        'title' => 'Self-Guide Kota Jail Visitor Feedback',
+        'intro' => 'Print this form for visitor reflection, learning groups, or post-tour feedback. No database is required.',
+        'fields' => [
+            'Name / Group',
+            'Visit date',
+            'Route completed',
+            'Favourite checkpoint',
+            'Which image or memory stayed with you?',
+            'Was the QR guidance clear?',
+            'Was the text easy to read on your phone?',
+            'Accessibility or comfort notes',
+            'What should be improved?',
+            'Overall rating',
+        ],
+    ],
+
+    'bunting' => [
+        'title' => 'Physical Bunting / Banner Copy',
+        'dimensions' => ['2 ft x 6 ft vertical bunting', '3 ft x 6 ft standing banner', '4 ft x 8 ft horizontal entrance banner'],
+        'headline' => 'Self-Guide Kota Jail',
+        'subheadline' => 'Scan. Walk. Remember. Explore Ayer Molek in 90 minutes or less.',
+        'copy' => [
+            'Start at the QR checkpoint.',
+            'Follow the numbered route.',
+            'Read the stories behind the walls.',
+            'Hope you enjoy.',
         ],
     ],
 

@@ -5,8 +5,8 @@
 @section('content')
     <x-page-hero
         eyebrow="Tour map"
-        title="Find each stop and move through the route at your own pace."
-        lead="The map is a styled static guide with sample markers. Use the list view when you prefer text navigation or need a simpler accessible alternative."
+        title="Follow the Ayer Molek checkpoint route."
+        lead="Use the numbered markers as the main self-guided path. When you reach a physical QR sign, scan it to open the stop page for the exact place you are standing."
         :image="$heroImage['image']"
         :alt="$heroImage['alt']"
         :position="$heroImage['position']"
@@ -81,6 +81,10 @@
                                 Reset map
                             </button>
                         </div>
+                    </div>
+                    <div class="m-3 rounded-2xl bg-deep-charcoal p-4 text-sm leading-6 text-concrete">
+                        <span class="font-bold text-muted-gold">QR note:</span>
+                        Scan from the checkpoint sign nearest your current marker. Each scan provides place-specific history, what to notice, and the next route direction.
                     </div>
                 </div>
 

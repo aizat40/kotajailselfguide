@@ -4,9 +4,9 @@
 
 @section('content')
     <x-page-hero
-        eyebrow="Gallery"
-        title="Photographs, textures, exhibitions, and visitor moments."
-        lead="A varied local gallery of actual Kota Jail images, including exterior views, interiors, cells, exhibitions, public spaces, and cultural activity."
+        eyebrow="Visual archive"
+        title="Photographs, textures, cells, signs, and memory traces."
+        lead="Use these img_update photographs as an accessible visual archive before, during, or after the Kota Jail route."
         :image="$heroImage['image']"
         :alt="$heroImage['alt']"
         :position="$heroImage['position']"
@@ -26,7 +26,7 @@
                     <label>
                         <span class="sr-only">Filter gallery category</span>
                         <select class="field-input w-full lg:min-w-64" data-category-filter>
-                            <option value="all">All categories</option>
+                            <option value="all">All archive categories</option>
                             @foreach (collect($galleryItems)->pluck('category')->unique()->values() as $category)
                                 <option value="{{ strtolower($category) }}">{{ $category }}</option>
                             @endforeach

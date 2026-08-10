@@ -5,8 +5,8 @@
 @section('content')
     <x-page-hero
         eyebrow="Start tour"
-        title="Choose the route that fits your visit today."
-        lead="Set language, duration, audio, accessibility, and interests. Your preferences and tour progress stay in this browser only."
+        title="Start at the Ayer Molek route checkpoint."
+        lead="Choose a route, scan the first QR sign on site, and follow the numbered Kota Jail stops. The complete self-guided trip is designed for 90 minutes or less."
         :image="$heroImage['image']"
         :alt="$heroImage['alt']"
         :position="$heroImage['position']"
@@ -14,7 +14,7 @@
         :height="$heroImage['height']"
     >
         <div class="flex flex-wrap gap-3">
-            <x-button href="#tour-options" variant="primary" icon="route">Choose Route</x-button>
+            <x-button href="#tour-options" variant="primary" icon="route">Choose Main Route</x-button>
             <x-button :href="route('tour.map')" variant="secondary" icon="map">Open Map</x-button>
         </div>
     </x-page-hero>
@@ -24,6 +24,11 @@
             <aside class="self-start rounded-3xl border border-concrete bg-heritage-cream p-6 lg:sticky lg:top-28">
                 <p class="section-label">Saved tour</p>
                 <h2 class="mt-2 font-serif text-3xl font-semibold text-deep-charcoal">Resume from where you left off.</h2>
+                <div class="mt-5 grid gap-3 text-sm font-semibold text-charcoal/75">
+                    <span class="rounded-2xl bg-paper-white px-4 py-3">Location: Ayer Molek</span>
+                    <span class="rounded-2xl bg-paper-white px-4 py-3">Year opened: {{ $site['established'] }}</span>
+                    <span class="rounded-2xl bg-paper-white px-4 py-3">Maximum trip: {{ $site['max_duration'] }}</span>
+                </div>
                 <x-progress-card :stops="$stops" class="mt-6" />
             </aside>
 
@@ -32,8 +37,8 @@
                 <section class="rounded-3xl border border-concrete bg-paper-white p-6 shadow-sm">
                     <x-section-heading
                         eyebrow="Route length"
-                        title="Select a self-guided route."
-                        lead="All routes use static sample stop data and can be edited in the configuration file."
+                        title="Select the main self-guided route."
+                        lead="Begin from the start checkpoint, then use each QR scan to open the stop page for your current location."
                     />
                     <div class="mt-8 grid gap-4 md:grid-cols-2">
                         @foreach ($routes as $route)
@@ -52,6 +57,24 @@
                                     <span>{{ $route['distance'] }}</span>
                                 </span>
                             </label>
+                        @endforeach
+                    </div>
+                </section>
+
+                <section class="rounded-3xl bg-deep-charcoal p-6 text-paper-white">
+                    <x-section-heading
+                        dark
+                        eyebrow="QR checkpoint flow"
+                        title="What happens when you scan?"
+                        lead="The QR code should be scanned from the sign nearest the checkpoint. It opens the exact stop page, explains what you are looking at, and points you to the next route marker."
+                    />
+                    <div class="mt-8 grid gap-4 md:grid-cols-3">
+                        @foreach (config('kotajail.qr_instructions') as $instruction)
+                            <article class="rounded-2xl border border-paper-white/10 bg-paper-white/5 p-5">
+                                <x-icon name="qr-code" class="h-7 w-7 text-muted-gold" />
+                                <h3 class="mt-4 font-serif text-xl font-semibold">{{ $instruction['title'] }}</h3>
+                                <p class="mt-3 text-sm leading-6 text-concrete">{{ $instruction['text'] }}</p>
+                            </article>
                         @endforeach
                     </div>
                 </section>
@@ -84,7 +107,7 @@
                             <select name="duration" data-pref-field class="field-input">
                                 <option value="30">30 minutes</option>
                                 <option value="60" selected>60 minutes</option>
-                                <option value="90">90 minutes</option>
+                                <option value="90">90 minutes maximum</option>
                             </select>
                         </label>
                         <label class="field-label">
@@ -98,8 +121,8 @@
                     </div>
                     <div class="mt-8 grid gap-4 sm:grid-cols-2">
                         <label class="flex min-h-14 items-center justify-between gap-4 rounded-2xl border border-concrete bg-paper-white p-4 font-semibold text-charcoal">
-                            <span>Audio enabled</span>
-                            <input type="checkbox" name="audio" data-pref-field class="h-5 w-5 accent-rust" checked>
+                            <span>Visual archive mode</span>
+                            <input type="checkbox" name="visual_archive" data-pref-field class="h-5 w-5 accent-rust" checked>
                         </label>
                         <label class="flex min-h-14 items-center justify-between gap-4 rounded-2xl border border-concrete bg-paper-white p-4 font-semibold text-charcoal">
                             <span>Accessibility mode</span>
@@ -114,7 +137,7 @@
                         @foreach ([
                             'Stay within public visitor areas and follow on-site barriers.',
                             'Use care around uneven floors, steps, older surfaces, and outdoor heat.',
-                            'Pause audio or lower volume when moving through crowded areas.',
+                            'Scan QR signs only from safe standing points near the route markers.',
                             'Respect restricted spaces, event setups, and other visitors.',
                         ] as $reminder)
                             <div class="flex gap-3 rounded-2xl bg-paper-white/5 p-4 text-sm leading-6 text-concrete">

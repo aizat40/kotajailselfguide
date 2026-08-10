@@ -102,4 +102,51 @@
             </div>
         </div>
     </section>
+
+    <section class="section-pad bg-jail-black text-paper-white">
+        <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+            @php($questionnaire = config('kotajail.questionnaire'))
+            @php($bunting = config('kotajail.bunting'))
+
+            <article class="print-feedback-sheet rounded-3xl border border-paper-white/15 bg-paper-white p-6 text-deep-charcoal shadow-xl">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                        <p class="section-label">Printable questionnaire</p>
+                        <h2 class="mt-3 font-serif text-3xl font-semibold">{{ $questionnaire['title'] }}</h2>
+                        <p class="mt-3 text-sm leading-7 text-charcoal/75">{{ $questionnaire['intro'] }}</p>
+                    </div>
+                    <button type="button" onclick="window.print()" class="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-rust px-5 py-3 text-sm font-bold text-paper-white transition hover:bg-brick focus:outline-none focus:ring-2 focus:ring-rust focus:ring-offset-2">
+                        Print Form
+                    </button>
+                </div>
+                <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                    @foreach ($questionnaire['fields'] as $field)
+                        <label class="grid gap-2 text-sm font-bold text-deep-charcoal">
+                            {{ $field }}
+                            <span class="min-h-12 rounded-2xl border border-concrete bg-paper-white"></span>
+                        </label>
+                    @endforeach
+                </div>
+            </article>
+
+            <article class="rounded-3xl border border-paper-white/15 bg-paper-white/5 p-6 shadow-xl">
+                <p class="section-label text-muted-gold">Bunting design layout</p>
+                <h2 class="mt-3 font-serif text-3xl font-semibold">{{ $bunting['headline'] }}</h2>
+                <p class="mt-3 text-lg font-bold text-muted-gold">{{ $bunting['subheadline'] }}</p>
+                <div class="mt-6 grid gap-3">
+                    @foreach ($bunting['dimensions'] as $dimension)
+                        <span class="rounded-2xl border border-paper-white/10 bg-paper-white/5 px-4 py-3 text-sm font-semibold text-concrete">{{ $dimension }}</span>
+                    @endforeach
+                </div>
+                <div class="mt-6 rounded-3xl bg-rust p-5">
+                    <p class="text-xs font-black uppercase tracking-[0.22em] text-paper-white/80">Suggested copy</p>
+                    <ul class="mt-4 space-y-3 text-sm font-semibold leading-6 text-paper-white">
+                        @foreach ($bunting['copy'] as $line)
+                            <li class="flex gap-3"><x-icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0" /> {{ $line }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
 @endsection

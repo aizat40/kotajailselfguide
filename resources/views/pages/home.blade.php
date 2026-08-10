@@ -2,6 +2,8 @@
 
 @php
     $sectionImages = $images['sections'];
+    $partners = config('kotajail.partners');
+    $qrInstructions = config('kotajail.qr_instructions');
 @endphp
 
 @section('content')
@@ -16,16 +18,31 @@
             loading="eager"
             fetchpriority="high"
         >
-        <div class="absolute inset-0 bg-gradient-to-br from-deep-charcoal/95 via-deep-charcoal/70 to-rust/50"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-jail-black/98 via-deep-charcoal/82 to-brick/70"></div>
         <div class="bar-pattern absolute inset-0 opacity-30"></div>
         <div class="relative mx-auto grid w-full max-w-7xl gap-10 px-4 pb-20 pt-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
             <div class="max-w-4xl">
                 <p class="section-label text-muted-gold">{{ $site['tagline'] }}</p>
-                <h1 class="mt-5 font-serif text-5xl font-bold leading-none sm:text-7xl lg:text-8xl">Explore the Stories Behind the Walls</h1>
-                <p class="mt-6 max-w-2xl text-lg leading-8 text-concrete">A respectful mobile-first self-guided tour for Kota Jail, the former Ayer Molek Prison site in Johor Bahru, now connected with heritage, architecture, art, culture, and community life.</p>
+                <h1 class="mt-5 font-serif text-5xl font-bold leading-none sm:text-7xl lg:text-8xl">Self-Guide Kota Jail</h1>
+                <p class="mt-5 max-w-2xl text-2xl font-black leading-tight text-paper-white sm:text-3xl">Explore the stories behind the walls at Ayer Molek.</p>
+                <p class="mt-6 max-w-2xl text-lg leading-8 text-concrete">{{ $site['purpose'] }}</p>
                 <div class="mt-8 flex flex-wrap gap-4">
                     <x-button :href="route('tour.start')" variant="primary" size="lg" icon="route">Start Your Tour</x-button>
                     <x-button :href="route('tour.map')" variant="secondary" size="lg" icon="map">Explore the Map</x-button>
+                </div>
+                <div class="mt-8 flex max-w-xl items-center gap-4 rounded-3xl border border-paper-white/15 bg-paper-white/10 p-4 backdrop-blur">
+                    <img
+                        src="{{ asset($sectionImages['home_features']['image']) }}"
+                        alt="Self-Guide Kota Jail team field-photo credit image"
+                        class="h-14 w-14 shrink-0 rounded-full object-cover"
+                        style="object-position: {{ $sectionImages['home_features']['position'] }};"
+                        width="{{ $sectionImages['home_features']['width'] }}"
+                        height="{{ $sectionImages['home_features']['height'] }}"
+                    >
+                    <div>
+                        <p class="text-xs font-black uppercase tracking-[0.2em] text-muted-gold">Photo and guide credits</p>
+                        <p class="mt-1 font-semibold text-paper-white">By {{ $site['credit_name'] }} with {{ $site['collaboration'] }}</p>
+                    </div>
                 </div>
             </div>
 
@@ -37,23 +54,44 @@
                     </div>
                     <div class="rounded-2xl bg-paper-white/10 p-4">
                         <p class="text-xs uppercase tracking-[0.22em] text-muted-gold">Location</p>
-                        <p class="mt-2 font-semibold">Johor Bahru, Johor</p>
+                        <p class="mt-2 font-semibold">Ayer Molek, Johor Bahru</p>
                     </div>
                     <div class="rounded-2xl bg-paper-white/10 p-4">
-                        <p class="text-xs uppercase tracking-[0.22em] text-muted-gold">Tour duration</p>
-                        <p class="mt-2 font-semibold">30-90 minutes</p>
+                        <p class="text-xs uppercase tracking-[0.22em] text-muted-gold">Max duration</p>
+                        <p class="mt-2 font-semibold">{{ $site['max_duration'] }}</p>
                     </div>
                     <div class="rounded-2xl bg-paper-white/10 p-4">
-                        <p class="text-xs uppercase tracking-[0.22em] text-muted-gold">Tour stops</p>
-                        <p class="mt-2 font-semibold">{{ count($stops) }} editable stops</p>
+                        <p class="text-xs uppercase tracking-[0.22em] text-muted-gold">Year opened</p>
+                        <p class="mt-2 font-semibold">{{ $site['established'] }}</p>
                     </div>
                 </div>
+                <x-image-credit :credit="$site['image_credit']" :source="$site['image_source_url']" compact class="mt-4 text-concrete/75" />
             </aside>
         </div>
         <a href="#intro" class="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-concrete md:flex">
             <span>Scroll</span>
             <span class="h-10 w-px bg-muted-gold"></span>
         </a>
+    </section>
+
+    <section class="bg-jail-black py-10 text-paper-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+                <div>
+                    <p class="section-label text-muted-gold">In Collaboration With / Bersama Dengan</p>
+                    <h2 class="mt-3 font-serif text-3xl font-semibold sm:text-4xl">Partners behind the self-guided experience.</h2>
+                </div>
+                <div class="grid gap-4 md:grid-cols-3">
+                    @foreach ($partners as $partner)
+                        <article class="min-h-40 rounded-3xl border border-paper-white/15 bg-paper-white/5 p-5 shadow-sm">
+                            <p class="text-[0.68rem] font-black uppercase tracking-[0.22em] text-muted-gold">{{ $partner['label'] }}</p>
+                            <p class="mt-4 font-serif text-2xl font-bold leading-tight text-paper-white">{{ $partner['name'] }}</p>
+                            <p class="mt-3 text-sm leading-6 text-concrete">{{ $partner['description'] }}</p>
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="intro" class="section-pad bg-paper-white">
@@ -85,7 +123,7 @@
                 <x-section-heading
                     eyebrow="Historical orientation"
                     title="A former prison site being reintroduced through heritage, art, and culture."
-                    lead="Kota Jail is associated with the former Ayer Molek Prison in Johor Bahru. This digital guide frames the site as a place for learning, careful observation, and contemporary public use while keeping uncertain details clearly editable."
+                    lead="Kota Jail is associated with the former Ayer Molek Prison at Ayer Molek, Johor Bahru. This digital guide exists so visitors can walk independently, scan checkpoint QR codes, understand where they are, and read in-depth historical and navigational context."
                 />
                 <div class="mt-8 grid gap-4 sm:grid-cols-3">
                     <div class="border-l-2 border-rust pl-4">
@@ -101,8 +139,9 @@
                         <p class="mt-2 text-sm leading-6 text-charcoal/70">Community events and public life.</p>
                     </div>
                 </div>
-                <div class="mt-8">
+                <div class="mt-8 flex flex-wrap gap-3">
                     <x-button :href="route('about')" variant="dark" icon="arrow-right">Discover Our Story</x-button>
+                    <x-button :href="route('tour.start')" variant="cream" icon="qr-code">Start QR Route</x-button>
                 </div>
             </div>
         </div>
@@ -226,18 +265,51 @@
 
     <section class="section-pad bg-paper-white">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <x-section-heading
-                    eyebrow="Upcoming events"
-                    title="Programmes for art, heritage, culture, and community."
-                    lead="These are sample listings that show the design and filtering system. Replace with verified current programmes."
-                />
-                <x-button :href="route('events.index')" variant="cream" icon="calendar">Browse Events</x-button>
-            </div>
-            <div class="mt-10 grid gap-6 md:grid-cols-3">
-                @foreach (array_slice(array_values(array_filter($events, fn ($event) => $event['status'] !== 'Past')), 0, 3) as $event)
-                    <x-event-card :event="$event" />
-                @endforeach
+            <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+                <div>
+                    <x-section-heading
+                        eyebrow="QR checkpoints"
+                        title="Scan from the place you are standing."
+                        lead="Each checkpoint is written for visitors already on site. Scan the sign beside the route marker, read the exact stop context, then continue at your own pace."
+                    />
+                    <div class="mt-8 grid gap-4">
+                        @foreach ($qrInstructions as $instruction)
+                            <article class="rounded-3xl border border-concrete bg-heritage-cream p-5 shadow-sm">
+                                <div class="flex gap-4">
+                                    <span class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-rust text-paper-white">
+                                        <x-icon name="qr-code" class="h-6 w-6" />
+                                    </span>
+                                    <div>
+                                        <h3 class="font-serif text-2xl font-semibold text-deep-charcoal">{{ $instruction['title'] }}</h3>
+                                        <p class="mt-2 text-sm leading-7 text-charcoal/75">{{ $instruction['text'] }}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="rounded-3xl bg-deep-charcoal p-5 text-paper-white shadow-xl">
+                    <p class="section-label text-muted-gold">Accessible experience</p>
+                    <h2 class="mt-3 font-serif text-4xl font-semibold">Historical memory through images.</h2>
+                    <p class="mt-4 text-sm leading-7 text-concrete">For visitors who prefer visual context, the gallery highlights corridors, doors, displays, textures, and QR wayfinding. The route can be followed slowly with large tap targets and list views.</p>
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        @foreach (array_slice($galleryItems, 0, 4) as $item)
+                            <img
+                                src="{{ asset($item['image']) }}"
+                                alt="{{ $item['alt'] }}"
+                                class="aspect-[4/3] rounded-2xl object-cover"
+                                style="object-position: {{ $item['image_position'] ?? 'center' }};"
+                                width="{{ $item['image_width'] ?? $item['width'] ?? null }}"
+                                height="{{ $item['image_height'] ?? $item['height'] ?? null }}"
+                                loading="lazy"
+                            >
+                        @endforeach
+                    </div>
+                    <div class="mt-6">
+                        <x-button :href="route('gallery')" variant="secondary" icon="camera">Open Visual Archive</x-button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -298,7 +370,7 @@
         <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <p class="section-label text-muted-gold">Begin when ready</p>
             <h2 class="mt-4 font-serif text-4xl font-semibold sm:text-6xl">Ready to Discover Kota Jail?</h2>
-            <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-concrete">Choose a route, keep your progress saved on this device, and move through each stop at a thoughtful pace.</p>
+            <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-concrete">Choose a route, keep your progress saved on this device, and move through each stop at a thoughtful pace. Hope you enjoy.</p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
                 <x-button :href="route('tour.start')" variant="primary" size="lg" icon="route">Start Tour</x-button>
                 <x-button :href="route('tour.map')" variant="secondary" size="lg" icon="map">View Map</x-button>

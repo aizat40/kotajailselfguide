@@ -55,6 +55,19 @@
                     </div>
                 </div>
 
+                <section class="mt-10 rounded-3xl bg-deep-charcoal p-6 text-paper-white shadow-xl">
+                    <div class="grid gap-6 lg:grid-cols-[auto_1fr] lg:items-start">
+                        <span class="grid h-16 w-16 place-items-center rounded-2xl bg-rust text-paper-white">
+                            <x-icon name="qr-code" class="h-8 w-8" />
+                        </span>
+                        <div>
+                            <p class="section-label text-muted-gold">QR checkpoint context</p>
+                            <h2 class="mt-3 font-serif text-3xl font-semibold">You are scanning from Stop {{ str_pad($stop['number'], 2, '0', STR_PAD_LEFT) }}: {{ $stop['title'] }}.</h2>
+                            <p class="mt-4 text-sm leading-7 text-concrete">This scan opens the guide for your current location. Read the short context, notice the listed architectural or memory details, then mark the stop completed before moving to the next route point.</p>
+                        </div>
+                    </div>
+                </section>
+
                 <div class="prose-content mt-10">
                     <h2>Short introduction</h2>
                     <p>{{ $stop['detail'] }}</p>
@@ -123,6 +136,14 @@
                 <section id="audio-guide-main" class="mt-12">
                     <x-audio-player :audio="$stop['audio']" />
                 </section>
+
+                @if ($stop['slug'] === 'final-reflection-area')
+                    <section class="mt-12 rounded-3xl bg-rust p-6 text-paper-white shadow-xl">
+                        <p class="section-label text-paper-white/80">Closing note</p>
+                        <h2 class="mt-3 font-serif text-4xl font-semibold">Hope you enjoy.</h2>
+                        <p class="mt-4 text-sm leading-7 text-paper-white/85">Thank you for taking the self-guided Kota Jail route at Ayer Molek. Use the gallery, questionnaire, or map if you want to revisit a memory from the walk.</p>
+                    </section>
+                @endif
 
                 <section class="mt-12 rounded-3xl border border-concrete bg-heritage-cream p-6">
                     <p class="section-label">Accessibility information</p>
