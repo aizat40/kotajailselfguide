@@ -141,23 +141,6 @@ function initMobileMenu() {
     });
 }
 
-function initScanModal() {
-    const modal = $('[data-scan-modal]');
-    if (!modal) return;
-
-    const setOpen = (open) => {
-        modal.classList.toggle('hidden', !open);
-        modal.classList.toggle('flex', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-    };
-
-    $$('[data-open-scan]').forEach((button) => button.addEventListener('click', () => setOpen(true)));
-    $$('[data-close-scan]').forEach((button) => button.addEventListener('click', () => setOpen(false)));
-    modal.addEventListener('click', (event) => {
-        if (event.target === modal) setOpen(false);
-    });
-}
-
 function initBackToTop() {
     const button = $('[data-back-to-top]');
     if (!button) return;
@@ -553,7 +536,6 @@ function initShareLinks() {
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initMobileMenu();
-    initScanModal();
     initBackToTop();
     initProgressControls();
     initFilters();

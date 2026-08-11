@@ -48,38 +48,16 @@
 <body class="min-h-screen bg-paper-white font-sans text-charcoal antialiased {{ $bodyClass ?? '' }}" data-page="{{ Route::currentRouteName() }}">
     <x-navbar :site="$site" />
 
-    <main id="main-content" tabindex="-1">
+    <main id="main-content" class="pb-28 lg:pb-0" tabindex="-1">
         @yield('content')
     </main>
 
     <x-footer :site="$site" />
     <x-mobile-navigation />
 
-    <button type="button" class="fixed bottom-28 right-4 z-40 hidden h-12 w-12 place-items-center rounded-full bg-rust text-paper-white shadow-lg shadow-rust/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold lg:bottom-8" data-back-to-top aria-label="Back to top">
+    <button type="button" class="fixed bottom-28 right-4 z-[60] hidden h-12 w-12 place-items-center rounded-full bg-rust text-paper-white shadow-lg shadow-rust/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold sm:right-6 lg:bottom-8 grid" data-back-to-top aria-label="Back to top">
         <x-icon name="arrow-left" class="h-5 w-5 rotate-90" />
     </button>
-
-    <div class="fixed inset-0 z-[70] hidden items-center justify-center bg-deep-charcoal/75 p-4 backdrop-blur-sm" data-scan-modal role="dialog" aria-modal="true" aria-labelledby="scan-title">
-        <div class="w-full max-w-md rounded-3xl bg-paper-white p-6 shadow-2xl">
-            <div class="flex items-start justify-between gap-4">
-                <div>
-                <p class="section-label">QR checkpoint</p>
-                <h2 id="scan-title" class="mt-2 font-serif text-3xl font-semibold text-deep-charcoal">Scan from your current stop</h2>
-                </div>
-                <button type="button" class="grid h-11 w-11 place-items-center rounded-full border border-concrete text-deep-charcoal" data-close-scan aria-label="Close scan modal">
-                    <x-icon name="close" class="h-5 w-5" />
-                </button>
-            </div>
-            <div class="mt-6 rounded-2xl border border-dashed border-rust/40 bg-heritage-cream p-6 text-center">
-                <div class="mx-auto grid h-20 w-20 place-items-center rounded-2xl bg-deep-charcoal text-muted-gold">
-                    <x-icon name="qr-code" class="h-10 w-10" />
-                </div>
-                <p class="mt-5 text-base leading-7 text-charcoal">Stand beside the numbered Ayer Molek checkpoint sign and scan its QR code. The guide opens the page for the exact place you are viewing.</p>
-                <p class="mt-3 text-sm leading-6 text-charcoal/70">This display version explains the QR flow and lets you browse the stop pages manually without a database or API key.</p>
-            </div>
-            <x-button :href="route('locations.index')" variant="dark" class="mt-6 w-full" icon="arrow-right">Browse Checkpoints</x-button>
-        </div>
-    </div>
 
     <div class="fixed bottom-28 left-1/2 z-[80] hidden w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl bg-deep-charcoal px-4 py-3 text-sm font-semibold text-paper-white shadow-2xl lg:bottom-8" data-toast role="status" aria-live="polite"></div>
 
