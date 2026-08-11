@@ -118,29 +118,6 @@ function initHeader() {
     window.addEventListener('scroll', syncHeader, { passive: true });
 }
 
-function initMobileMenu() {
-    const drawer = $('[data-mobile-drawer]');
-    const overlay = $('[data-mobile-overlay]');
-    const toggles = $$('[data-mobile-toggle]');
-    const closeButtons = $$('[data-mobile-close]');
-    if (!drawer || !overlay) return;
-
-    const setOpen = (open) => {
-        drawer.classList.toggle('is-open', open);
-        drawer.setAttribute('aria-hidden', String(!open));
-        overlay.classList.toggle('hidden', !open);
-        document.body.style.overflow = open ? 'hidden' : '';
-        toggles.forEach((toggle) => toggle.setAttribute('aria-expanded', String(open)));
-    };
-
-    toggles.forEach((toggle) => toggle.addEventListener('click', () => setOpen(true)));
-    closeButtons.forEach((button) => button.addEventListener('click', () => setOpen(false)));
-    overlay.addEventListener('click', () => setOpen(false));
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') setOpen(false);
-    });
-}
-
 function initBackToTop() {
     const button = $('[data-back-to-top]');
     if (!button) return;
@@ -535,7 +512,6 @@ function initShareLinks() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
-    initMobileMenu();
     initBackToTop();
     initProgressControls();
     initFilters();
