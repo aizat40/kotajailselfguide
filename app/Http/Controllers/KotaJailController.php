@@ -55,6 +55,12 @@ class KotaJailController extends Controller
 
         $previous = $stop['_index'] > 0 ? $stops[$stop['_index'] - 1] : null;
         $next = $stop['_index'] < count($stops) - 1 ? $stops[$stop['_index'] + 1] : null;
+        $detailGallery = collect($this->galleryData())
+            ->reject(fn (array $item) => ($item['image'] ?? null) === ($stop['image'] ?? null))
+            ->unique('image')
+            ->take(4)
+            ->values()
+            ->all();
 
         return view('pages.location-detail', $this->baseData([
             'title' => $stop['title'].' | Kota Jail Tour Stop',
@@ -62,7 +68,7 @@ class KotaJailController extends Controller
             'stop' => $stop,
             'previousStop' => $previous,
             'nextStop' => $next,
-            'detailGallery' => array_slice($this->galleryData(), 0, 4),
+            'detailGallery' => $detailGallery,
         ]));
     }
 

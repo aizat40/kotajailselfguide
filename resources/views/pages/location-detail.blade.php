@@ -187,17 +187,12 @@
             <aside class="space-y-6 lg:sticky lg:top-28 lg:self-start">
                 <x-progress-card :stops="$stops" />
                 <div class="rounded-3xl border border-concrete bg-paper-white p-5 shadow-sm">
-                    <p class="section-label">Tags</p>
-                    <img
-                        src="{{ asset($stop['image']) }}"
-                        alt="{{ $stop['alt'] }}"
-                        class="section-image mt-5 aspect-[4/3] rounded-2xl"
-                        style="object-position: {{ $stop['image_position'] ?? 'center' }};"
-                        loading="lazy"
-                        @if (! empty($stop['image_width'])) width="{{ $stop['image_width'] }}" @endif
-                        @if (! empty($stop['image_height'])) height="{{ $stop['image_height'] }}" @endif
-                    >
-                    <x-image-credit :credit="$stop['image_credit'] ?? null" :source="$stop['image_source_url'] ?? null" compact class="mt-3" />
+                    <p class="section-label">Stop details</p>
+                    <div class="mt-5 grid gap-3 text-sm font-semibold text-charcoal/75">
+                        <span class="rounded-2xl bg-heritage-cream px-4 py-3">Stop #{{ str_pad($stop['number'], 2, '0', STR_PAD_LEFT) }}</span>
+                        <span class="rounded-2xl bg-heritage-cream px-4 py-3">{{ $stop['duration'] }} visit time</span>
+                        <span class="rounded-2xl bg-heritage-cream px-4 py-3">{{ $stop['reading_time'] }}</span>
+                    </div>
                     <div class="mt-4 flex flex-wrap gap-2">
                         @foreach ($stop['tags'] as $tag)
                             <span class="rounded-full bg-heritage-cream px-3 py-1 text-xs font-bold text-heritage-brown">{{ $tag }}</span>

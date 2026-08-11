@@ -3,6 +3,7 @@
 @php
     $sectionImages = $images['sections'];
     $partners = config('kotajail.partners');
+    $creditImage = $sectionImages['home_credit'] ?? $sectionImages['home_features'];
 @endphp
 
 @section('content')
@@ -27,12 +28,12 @@
                 <p class="mt-6 max-w-2xl text-lg leading-8 text-concrete">{{ $site['purpose'] }}</p>
                 <div class="mt-8 flex max-w-xl items-center gap-4 rounded-3xl border border-paper-white/15 bg-paper-white/10 p-4 backdrop-blur">
                     <img
-                        src="{{ asset($sectionImages['home_features']['image']) }}"
-                        alt="Weathered Kota Jail wall with QR visitor signage at Ayer Molek"
+                        src="{{ asset($creditImage['image']) }}"
+                        alt="{{ $creditImage['alt'] }}"
                         class="h-14 w-14 shrink-0 rounded-full object-cover"
-                        style="object-position: {{ $sectionImages['home_features']['position'] }};"
-                        width="{{ $sectionImages['home_features']['width'] }}"
-                        height="{{ $sectionImages['home_features']['height'] }}"
+                        style="object-position: {{ $creditImage['position'] }};"
+                        width="{{ $creditImage['width'] }}"
+                        height="{{ $creditImage['height'] }}"
                     >
                     <div>
                         <p class="text-xs font-black uppercase tracking-[0.2em] text-muted-gold">Photo and guide credits</p>

@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
-@php($heroImage = $images['sections']['locations_hero'])
+@php
+    $heroImage = $images['sections']['locations_hero'];
+    $uniqueStops = collect($stops)
+        ->reject(fn ($stop) => ($stop['image'] ?? null) === ($heroImage['image'] ?? null))
+        ->unique('image')
+        ->values();
+@endphp
 
 @section('content')
     <x-page-hero
@@ -38,13 +44,13 @@
                     </div>
                 </div>
                 <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm font-semibold text-charcoal/70">
-                    <p><span data-result-count>{{ count($stops) }}</span> locations shown</p>
+                    <p><span data-result-count>{{ $uniqueStops->count() }}</span> locations shown</p>
                     <button type="button" class="text-rust hover:underline" data-clear-filters>Clear filters</button>
                 </div>
             </div>
 
             <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3" data-results-grid>
-                @foreach ($stops as $stop)
+                @foreach ($uniqueStops as $stop)
                     <x-tour-card :stop="$stop" />
                 @endforeach
             </div>

@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
-@php($heroImage = $images['sections']['gallery_hero'])
+@php
+    $heroImage = $images['sections']['gallery_hero'];
+    $uniqueGalleryItems = collect($galleryItems)
+        ->reject(fn ($item) => ($item['image'] ?? null) === ($heroImage['image'] ?? null))
+        ->unique('image')
+        ->values();
+@endphp
 
 @section('content')
     <x-page-hero
@@ -27,20 +33,20 @@
                         <span class="sr-only">Filter gallery category</span>
                         <select class="field-input w-full lg:min-w-64" data-category-filter>
                             <option value="all">All archive categories</option>
-                            @foreach (collect($galleryItems)->pluck('category')->unique()->values() as $category)
+                            @foreach ($uniqueGalleryItems->pluck('category')->unique()->values() as $category)
                                 <option value="{{ strtolower($category) }}">{{ $category }}</option>
                             @endforeach
                         </select>
                     </label>
                 </div>
                 <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm font-semibold text-charcoal/70">
-                    <p><span data-result-count>{{ count($galleryItems) }}</span> images shown</p>
+                    <p><span data-result-count>{{ $uniqueGalleryItems->count() }}</span> images shown</p>
                     <button type="button" class="text-rust hover:underline" data-clear-filters>Clear filters</button>
                 </div>
             </div>
 
             <div class="mt-10 columns-1 gap-6 sm:columns-2 lg:columns-3" data-results-grid>
-                @foreach ($galleryItems as $item)
+                @foreach ($uniqueGalleryItems as $item)
                     <div class="mb-6">
                         <x-gallery-card :item="$item" />
                     </div>
