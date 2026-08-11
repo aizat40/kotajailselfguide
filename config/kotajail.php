@@ -730,6 +730,16 @@ return [
         ],
     ],
 
+    'feedback_qr' => [
+        'image' => 'images/kota-jail/img_update/qr.jpg',
+        'alt' => 'Scan this QR code to provide feedback for the Self-Guide Kota Jail tour',
+        'heading' => 'Tell Us About Your Experience',
+        'instruction' => 'Please scan the QR code above to share your thoughts on the Self-Guide Kota Jail tour. Your feedback helps us improve!',
+        'credit' => 'Image by Self-Guide Kota Jail Team',
+        'width' => 1080,
+        'height' => 1080,
+    ],
+
     'bunting' => [
         'title' => 'Physical Bunting / Banner Copy',
         'dimensions' => ['2 ft x 6 ft vertical bunting', '3 ft x 6 ft standing banner', '4 ft x 8 ft horizontal entrance banner'],

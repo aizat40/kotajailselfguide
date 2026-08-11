@@ -2,6 +2,7 @@
 
 @php
     $detailGallery = $detailGallery ?? array_slice($galleryItems ?? [], 0, 4);
+    $feedbackQr = config('kotajail.feedback_qr');
 @endphp
 
 @section('content')
@@ -137,14 +138,6 @@
                     <x-audio-player :audio="$stop['audio']" />
                 </section>
 
-                @if ($stop['slug'] === 'final-reflection-area')
-                    <section class="mt-12 rounded-3xl bg-rust p-6 text-paper-white shadow-xl">
-                        <p class="section-label text-paper-white/80">Closing note</p>
-                        <h2 class="mt-3 font-serif text-4xl font-semibold">Hope you enjoy.</h2>
-                        <p class="mt-4 text-sm leading-7 text-paper-white/85">Thank you for taking the self-guided Kota Jail route at Ayer Molek. Use the gallery, questionnaire, or map if you want to revisit a memory from the walk.</p>
-                    </section>
-                @endif
-
                 <section class="mt-12 rounded-3xl border border-concrete bg-heritage-cream p-6">
                     <p class="section-label">Accessibility information</p>
                     <h2 class="mt-3 font-serif text-3xl font-semibold text-deep-charcoal">Plan this stop with care.</h2>
@@ -165,6 +158,34 @@
                         </a>
                     @endif
                 </nav>
+
+                @if ($stop['slug'] === 'final-reflection-area')
+                    <section class="mt-12 overflow-hidden rounded-[2rem] bg-deep-charcoal text-paper-white shadow-2xl">
+                        <div class="p-6 text-center sm:p-8">
+                            <p class="section-label text-muted-gold">Final feedback</p>
+                            <h2 class="mx-auto mt-3 max-w-2xl font-serif text-4xl font-semibold sm:text-5xl">{{ $feedbackQr['heading'] }}</h2>
+
+                            <figure class="mx-auto mt-8 w-full max-w-[18rem] rounded-[1.75rem] border border-muted-gold/40 bg-paper-white p-4 shadow-2xl shadow-black/30 sm:max-w-xs">
+                                <img
+                                    src="{{ asset($feedbackQr['image']) }}"
+                                    alt="{{ $feedbackQr['alt'] }}"
+                                    class="aspect-square w-full rounded-2xl object-contain"
+                                    width="{{ $feedbackQr['width'] }}"
+                                    height="{{ $feedbackQr['height'] }}"
+                                    loading="lazy"
+                                >
+                                <figcaption class="mt-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-charcoal/70">{{ $feedbackQr['credit'] }}</figcaption>
+                            </figure>
+
+                            <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-concrete">{{ $feedbackQr['instruction'] }}</p>
+                            <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-paper-white/75">Thank you for taking the self-guided Kota Jail route at Ayer Molek. Your response helps improve the route, captions, access notes, and historical memory experience for future visitors.</p>
+                        </div>
+                        <div class="border-t border-paper-white/10 bg-rust px-6 py-8 text-center sm:px-8">
+                            <p class="section-label text-paper-white/80">Closing note</p>
+                            <p class="mt-3 font-serif text-4xl font-semibold sm:text-5xl">Hope you enjoy.</p>
+                        </div>
+                    </section>
+                @endif
             </article>
 
             <aside class="space-y-6 lg:sticky lg:top-28 lg:self-start">
