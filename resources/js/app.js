@@ -50,15 +50,6 @@ function showToast(message) {
     showToast.timeout = setTimeout(() => toast.classList.add('hidden'), 3200);
 }
 
-function iconSvg(name) {
-    const icons = {
-        play: '<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7-11-7Z"/></svg>',
-        pause: '<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14"/><path d="M16 5v14"/></svg>',
-    };
-
-    return icons[name] || icons.play;
-}
-
 function updateTourProgress() {
     const completed = getCompleted();
     const total = stops.length || 1;
@@ -202,13 +193,11 @@ function initFilters() {
     $$('[data-filter-scope]').forEach((scope) => {
         const search = $('[data-search-input]', scope);
         const category = $('[data-category-filter]', scope);
-        const status = $('[data-status-filter]', scope);
         const resultCount = $('[data-result-count]', scope);
         const empty = $('[data-empty-state]', scope);
         const grid = $('[data-results-grid]', scope);
 
         const getCards = () => {
-            if (scope.dataset.filterType === 'events') return $$('[data-event-card]', scope);
             if (scope.dataset.filterType === 'gallery') return $$('[data-gallery-card]', scope);
             return $$('[data-location-card]', scope);
         };
@@ -216,7 +205,6 @@ function initFilters() {
         const apply = () => {
             const term = (search?.value || '').trim().toLowerCase();
             const categoryValue = (category?.value || 'all').toLowerCase();
-            const statusValue = (status?.value || 'all').toLowerCase();
             let visible = 0;
 
             getCards().forEach((card) => {
@@ -224,20 +212,15 @@ function initFilters() {
                     card.dataset.stopTitle,
                     card.dataset.stopCategory,
                     card.dataset.stopTags,
-                    card.dataset.eventTitle,
-                    card.dataset.eventCategory,
-                    card.dataset.eventStatus,
                     card.dataset.galleryTitle,
                     card.dataset.galleryCategory,
                     card.textContent,
                 ].filter(Boolean).join(' ').toLowerCase();
-                const cardCategory = (card.dataset.stopCategory || card.dataset.eventCategory || card.dataset.galleryCategory || '').toLowerCase();
+                const cardCategory = (card.dataset.stopCategory || card.dataset.galleryCategory || '').toLowerCase();
                 const tags = (card.dataset.stopTags || '').toLowerCase();
-                const cardStatus = (card.dataset.eventStatus || '').toLowerCase();
                 const termMatch = !term || text.includes(term);
                 const categoryMatch = categoryValue === 'all' || cardCategory === categoryValue || tags.includes(categoryValue);
-                const statusMatch = statusValue === 'all' || cardStatus === statusValue;
-                const show = termMatch && categoryMatch && statusMatch;
+                const show = termMatch && categoryMatch;
 
                 card.classList.toggle('is-hidden', !show);
                 if (card.parentElement && scope.dataset.filterType === 'gallery') {
@@ -250,11 +233,10 @@ function initFilters() {
             empty?.classList.toggle('hidden', visible !== 0);
         };
 
-        [search, category, status].filter(Boolean).forEach((input) => input.addEventListener('input', apply));
+        [search, category].filter(Boolean).forEach((input) => input.addEventListener('input', apply));
         $('[data-clear-filters]', scope)?.addEventListener('click', () => {
             if (search) search.value = '';
             if (category) category.value = 'all';
-            if (status) status.value = 'all';
             apply();
         });
 
@@ -405,77 +387,6 @@ function initGeolocation() {
     });
 }
 
-function initAudioPlayers() {
-    $$('[data-audio-player]').forEach((player) => {
-        const src = player.dataset.audioSrc;
-        const audio = src ? new Audio(src) : null;
-        const play = $('[data-audio-play]', player);
-        const progress = $('[data-audio-progress]', player);
-        const current = $('[data-audio-current]', player);
-        const duration = $('[data-audio-duration]', player);
-        const volume = $('[data-audio-volume]', player);
-        const speed = $('[data-audio-speed]', player);
-
-        const setPlaying = (playing) => {
-            play.innerHTML = iconSvg(playing ? 'pause' : 'play');
-            play.setAttribute('aria-label', playing ? 'Pause audio guide' : 'Play audio guide');
-        };
-
-        play?.addEventListener('click', () => {
-            if (!audio) {
-                showToast('Sample audio file has not been added yet. Use the transcript for now.');
-                return;
-            }
-
-            if (audio.paused) {
-                audio.play();
-                setPlaying(true);
-            } else {
-                audio.pause();
-                setPlaying(false);
-            }
-        });
-
-        $('[data-audio-rewind]', player)?.addEventListener('click', () => {
-            if (audio) audio.currentTime = Math.max(audio.currentTime - 10, 0);
-        });
-        $('[data-audio-forward]', player)?.addEventListener('click', () => {
-            if (audio) audio.currentTime = Math.min(audio.currentTime + 10, audio.duration || audio.currentTime + 10);
-        });
-        progress?.addEventListener('input', () => {
-            if (audio && audio.duration) audio.currentTime = (Number(progress.value) / 100) * audio.duration;
-        });
-        volume?.addEventListener('input', () => {
-            if (audio) audio.volume = Number(volume.value) / 100;
-        });
-        speed?.addEventListener('change', () => {
-            if (audio) audio.playbackRate = Number(speed.value);
-        });
-
-        audio?.addEventListener('timeupdate', () => {
-            if (!audio.duration) return;
-            progress.value = String((audio.currentTime / audio.duration) * 100);
-            current.textContent = formatTime(audio.currentTime);
-            duration.textContent = formatTime(audio.duration);
-        });
-        audio?.addEventListener('ended', () => setPlaying(false));
-
-        $('[data-transcript-toggle]', player)?.addEventListener('click', (event) => {
-            const trigger = event.currentTarget;
-            const transcript = $('[data-transcript]', player);
-            const open = transcript.classList.toggle('hidden') === false;
-            trigger.setAttribute('aria-expanded', String(open));
-            trigger.firstChild.textContent = open ? 'Hide transcript ' : 'Show transcript ';
-        });
-    });
-}
-
-function formatTime(value) {
-    const minutes = Math.floor(value / 60);
-    const seconds = Math.floor(value % 60).toString().padStart(2, '0');
-    return `${minutes}:${seconds}`;
-}
-
 function initAccordions() {
     $$('[data-accordion-trigger]').forEach((trigger) => {
         trigger.addEventListener('click', () => {
@@ -617,56 +528,6 @@ function initTourPreferences() {
     }));
 }
 
-function initLanguageSelectors() {
-    const saved = readJson(storageKeys.preferences, {});
-    $$('[data-language-select]').forEach((select) => {
-        if (saved.language) select.value = saved.language;
-        select.addEventListener('change', () => {
-            const next = { ...readJson(storageKeys.preferences, {}), language: select.value };
-            writeJson(storageKeys.preferences, next);
-            $$('[data-language-select]').forEach((other) => {
-                if (other !== select) other.value = select.value;
-            });
-            showToast(select.value === 'ms' ? 'Language preference saved: Bahasa Malaysia.' : 'Language preference saved: English.');
-        });
-    });
-}
-
-function initForms() {
-    $$('[data-display-form]').forEach((form) => {
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            let valid = true;
-
-            $$('[data-error-for]', form).forEach((error) => {
-                error.textContent = '';
-            });
-
-            $$('input, select, textarea', form).forEach((field) => {
-                if (!field.required) return;
-                let message = '';
-                if (!field.value.trim()) message = 'This field is required.';
-                if (field.type === 'email' && field.value && !field.checkValidity()) message = 'Enter a valid email address.';
-
-                if (message) {
-                    valid = false;
-                    const error = $(`[data-error-for="${field.name}"]`, form);
-                    if (error) error.textContent = message;
-                }
-            });
-
-            if (!valid) {
-                showToast('Please check the highlighted form fields.');
-                return;
-            }
-
-            $('[data-form-success]', form)?.classList.remove('hidden');
-            form.reset();
-            showToast('Form validated. No message was sent or stored.');
-        });
-    });
-}
-
 function initShareLinks() {
     $$('[data-share-link]').forEach((button) => {
         button.addEventListener('click', async () => {
@@ -698,12 +559,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilters();
     initMapPage();
     initGeolocation();
-    initAudioPlayers();
     initAccordions();
     initLightbox();
     initPlanner();
     initTourPreferences();
-    initLanguageSelectors();
-    initForms();
     initShareLinks();
 });

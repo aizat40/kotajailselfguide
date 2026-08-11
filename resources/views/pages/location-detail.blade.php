@@ -134,10 +134,6 @@
                     </div>
                 </section>
 
-                <section id="audio-guide-main" class="mt-12">
-                    <x-audio-player :audio="$stop['audio']" />
-                </section>
-
                 <section class="mt-12 rounded-3xl border border-concrete bg-heritage-cream p-6">
                     <p class="section-label">Accessibility information</p>
                     <h2 class="mt-3 font-serif text-3xl font-semibold text-deep-charcoal">Plan this stop with care.</h2>
@@ -217,8 +213,4 @@
             </aside>
         </div>
     </section>
-
-    <div class="lg:hidden">
-        <x-audio-player :audio="$stop['audio']" sticky />
-    </div>
 @endsection

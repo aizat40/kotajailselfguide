@@ -3,7 +3,6 @@
 @php
     $sectionImages = $images['sections'];
     $partners = config('kotajail.partners');
-    $qrInstructions = config('kotajail.qr_instructions');
 @endphp
 
 @section('content')
@@ -26,10 +25,6 @@
                 <h1 class="mt-5 font-serif text-5xl font-bold leading-none sm:text-7xl lg:text-8xl">Self-Guide Kota Jail</h1>
                 <p class="mt-5 max-w-2xl text-2xl font-black leading-tight text-paper-white sm:text-3xl">Explore the stories behind the walls at Ayer Molek.</p>
                 <p class="mt-6 max-w-2xl text-lg leading-8 text-concrete">{{ $site['purpose'] }}</p>
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <x-button :href="route('tour.start')" variant="primary" size="lg" icon="route">Start Your Tour</x-button>
-                    <x-button :href="route('tour.map')" variant="secondary" size="lg" icon="map">Explore the Map</x-button>
-                </div>
                 <div class="mt-8 flex max-w-xl items-center gap-4 rounded-3xl border border-paper-white/15 bg-paper-white/10 p-4 backdrop-blur">
                     <img
                         src="{{ asset($sectionImages['home_features']['image']) }}"
@@ -139,10 +134,6 @@
                         <p class="mt-2 text-sm leading-6 text-charcoal/70">Community events and public life.</p>
                     </div>
                 </div>
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <x-button :href="route('about')" variant="dark" icon="arrow-right">Discover Our Story</x-button>
-                    <x-button :href="route('tour.start')" variant="cream" icon="qr-code">Start QR Route</x-button>
-                </div>
             </div>
         </div>
     </section>
@@ -179,58 +170,6 @@
         </div>
     </section>
 
-    <section class="section-pad bg-paper-white">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <x-section-heading
-                    eyebrow="Featured stops"
-                    title="Start with the main route."
-                    lead="The stop labels are structured for the current self-guided route and can be refined as official interpretive names are confirmed."
-                />
-                <x-button :href="route('locations.index')" variant="cream" icon="arrow-right">View all locations</x-button>
-            </div>
-            <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-                @foreach (array_slice($stops, 0, 4) as $stop)
-                    <x-tour-card :stop="$stop" compact />
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <section class="section-pad bg-charcoal">
-        <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-            <x-progress-card :stops="$stops" />
-            <div class="rounded-3xl border border-paper-white/10 bg-paper-white/5 p-6 text-paper-white">
-                <x-section-heading
-                    dark
-                    eyebrow="Map preview"
-                    title="A visual route before you walk."
-                    lead="This illustrated map mock-up uses static sample markers and a route line. It avoids paid map keys and has a list alternative on the full map page."
-                />
-                <div class="mt-6 flex flex-wrap gap-3">
-                    <button type="button" class="toggle-chip is-active" data-map-view="map">Map</button>
-                    <button type="button" class="toggle-chip" data-map-view="list">List</button>
-                    <button type="button" class="toggle-chip" data-current-location>Current location</button>
-                </div>
-                <div class="map-board mt-6 aspect-[4/3]">
-                    <div class="map-route-line"></div>
-                    @foreach ($stops as $stop)
-                        <button type="button" class="map-marker" style="left: {{ $stop['coordinates']['x'] }}%; top: {{ $stop['coordinates']['y'] }}%;" data-map-marker data-stop-slug="{{ $stop['slug'] }}" aria-label="Preview {{ $stop['title'] }}">
-                            {{ $stop['number'] }}
-                        </button>
-                    @endforeach
-                </div>
-                <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
-                    <div class="flex flex-wrap gap-3 text-sm text-concrete">
-                        <span class="inline-flex items-center gap-2"><span class="h-3 w-3 rounded-full bg-rust"></span> Stops</span>
-                        <span class="inline-flex items-center gap-2"><span class="h-3 w-8 rounded-full bg-muted-gold"></span> Suggested route</span>
-                    </div>
-                    <x-button :href="route('tour.map')" variant="secondary" icon="map">Open Full Map</x-button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="section-pad bg-heritage-cream">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div>
@@ -259,57 +198,6 @@
                 @foreach ($timeline as $item)
                     <x-timeline-item :item="$item" :last="$loop->last" />
                 @endforeach
-            </div>
-        </div>
-    </section>
-
-    <section class="section-pad bg-paper-white">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-                <div>
-                    <x-section-heading
-                        eyebrow="QR checkpoints"
-                        title="Scan from the place you are standing."
-                        lead="Each checkpoint is written for visitors already on site. Scan the sign beside the route marker, read the exact stop context, then continue at your own pace."
-                    />
-                    <div class="mt-8 grid gap-4">
-                        @foreach ($qrInstructions as $instruction)
-                            <article class="rounded-3xl border border-concrete bg-heritage-cream p-5 shadow-sm">
-                                <div class="flex gap-4">
-                                    <span class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-rust text-paper-white">
-                                        <x-icon name="qr-code" class="h-6 w-6" />
-                                    </span>
-                                    <div>
-                                        <h3 class="font-serif text-2xl font-semibold text-deep-charcoal">{{ $instruction['title'] }}</h3>
-                                        <p class="mt-2 text-sm leading-7 text-charcoal/75">{{ $instruction['text'] }}</p>
-                                    </div>
-                                </div>
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="rounded-3xl bg-deep-charcoal p-5 text-paper-white shadow-xl">
-                    <p class="section-label text-muted-gold">Accessible experience</p>
-                    <h2 class="mt-3 font-serif text-4xl font-semibold">Historical memory through images.</h2>
-                    <p class="mt-4 text-sm leading-7 text-concrete">For visitors who prefer visual context, the gallery highlights corridors, doors, displays, textures, and QR wayfinding. The route can be followed slowly with large tap targets and list views.</p>
-                    <div class="mt-6 grid grid-cols-2 gap-3">
-                        @foreach (array_slice($galleryItems, 0, 4) as $item)
-                            <img
-                                src="{{ asset($item['image']) }}"
-                                alt="{{ $item['alt'] }}"
-                                class="aspect-[4/3] rounded-2xl object-cover"
-                                style="object-position: {{ $item['image_position'] ?? 'center' }};"
-                                width="{{ $item['image_width'] ?? $item['width'] ?? null }}"
-                                height="{{ $item['image_height'] ?? $item['height'] ?? null }}"
-                                loading="lazy"
-                            >
-                        @endforeach
-                    </div>
-                    <div class="mt-6">
-                        <x-button :href="route('gallery')" variant="secondary" icon="camera">Open Visual Archive</x-button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -354,27 +242,4 @@
         </div>
     </section>
 
-    <section class="relative overflow-hidden bg-deep-charcoal py-24 text-paper-white">
-        @php($ctaImage = $sectionImages['cta'])
-        <img
-            src="{{ asset($ctaImage['image']) }}"
-            alt="{{ $ctaImage['alt'] }}"
-            class="absolute inset-0 h-full w-full object-cover"
-            style="object-position: {{ $ctaImage['position'] }};"
-            width="{{ $ctaImage['width'] }}"
-            height="{{ $ctaImage['height'] }}"
-            loading="lazy"
-        >
-        <div class="absolute inset-0 bg-deep-charcoal/75"></div>
-        <div class="bar-pattern absolute inset-0 opacity-20"></div>
-        <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <p class="section-label text-muted-gold">Begin when ready</p>
-            <h2 class="mt-4 font-serif text-4xl font-semibold sm:text-6xl">Ready to Discover Kota Jail?</h2>
-            <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-concrete">Choose a route, keep your progress saved on this device, and move through each stop at a thoughtful pace. Hope you enjoy.</p>
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <x-button :href="route('tour.start')" variant="primary" size="lg" icon="route">Start Tour</x-button>
-                <x-button :href="route('tour.map')" variant="secondary" size="lg" icon="map">View Map</x-button>
-            </div>
-        </div>
-    </section>
 @endsection

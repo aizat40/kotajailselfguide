@@ -121,10 +121,6 @@
         @apply min-h-12 max-w-full rounded-2xl border border-concrete bg-paper-white px-4 py-3 text-sm font-semibold text-deep-charcoal shadow-sm outline-none transition placeholder:text-charcoal/45 focus:border-muted-gold focus:ring-4 focus:ring-muted-gold/20;
     }
 
-    .field-error {
-        @apply min-h-5 text-xs font-bold text-rust;
-    }
-
     .toggle-chip {
         @apply inline-flex min-h-10 items-center justify-center rounded-full border border-paper-white/15 bg-paper-white/10 px-4 py-2 text-sm font-bold text-paper-white transition hover:bg-paper-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
     }
@@ -227,18 +223,6 @@
         @apply mt-4 list-disc space-y-2 pl-6;
     }
 
-    .audio-btn {
-        @apply grid h-11 w-11 place-items-center rounded-full border border-concrete bg-heritage-cream text-deep-charcoal transition hover:border-muted-gold hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold;
-    }
-
-    .audio-btn.is-primary {
-        @apply h-14 w-14 bg-rust text-paper-white hover:bg-brick hover:text-paper-white;
-    }
-
-    .sticky-audio {
-        @apply fixed inset-x-3 bottom-24 z-30 mx-auto max-w-xl;
-    }
-
     .lightbox-arrow {
         @apply absolute z-10 grid h-11 w-11 place-items-center rounded-full border border-paper-white/20 bg-paper-white/10 text-paper-white backdrop-blur transition hover:bg-paper-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-muted-gold sm:h-12 sm:w-12;
     }
@@ -248,7 +232,6 @@
     }
 
     .gallery-card.is-hidden,
-    .event-card.is-hidden,
     .tour-card.is-hidden,
     .map-marker.is-hidden {
         display: none;

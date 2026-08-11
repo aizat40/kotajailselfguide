@@ -85,14 +85,7 @@
                         title="Make the guide more comfortable."
                         lead="These settings are stored locally and can be changed any time."
                     />
-                    <div class="mt-8 grid gap-5 md:grid-cols-2">
-                        <label class="field-label">
-                            Language
-                            <select name="language" data-pref-field class="field-input">
-                                <option value="en">English</option>
-                                <option value="ms">Bahasa Malaysia</option>
-                            </select>
-                        </label>
+                    <div class="mt-8 grid gap-5 md:grid-cols-3">
                         <label class="field-label">
                             Tour theme
                             <select name="theme" data-pref-field class="field-input">

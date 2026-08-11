@@ -59,13 +59,6 @@
                             <option value="rest">Prefer more rest points</option>
                         </select>
                     </label>
-                    <label class="field-label">
-                        Language preference
-                        <select class="field-input" name="language" data-planner-field>
-                            <option value="en">English</option>
-                            <option value="ms">Bahasa Malaysia</option>
-                        </select>
-                    </label>
                 </div>
             </form>
 

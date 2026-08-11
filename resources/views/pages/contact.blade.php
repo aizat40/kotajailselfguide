@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @php($heroImage = $images['sections']['contact_hero'])
+@php($whatsappUrl = 'https://wa.me/'.preg_replace('/\D+/', '', $site['phone']))
 
 @section('content')
     <x-page-hero
         eyebrow="Contact"
         title="Reach Kota Jail or plan a group visit."
-        lead="This display-only page includes polished form states but does not send email or store data. Backend handling can be added later."
+        lead="Use the address, map, email, and WhatsApp details to plan a respectful self-guided visit to Kota Jail at Ayer Molek."
         :image="$heroImage['image']"
         :alt="$heroImage['alt']"
         :position="$heroImage['position']"
@@ -67,90 +68,49 @@
             </aside>
 
             <div class="grid gap-8">
-                <form class="rounded-3xl border border-concrete bg-heritage-cream p-6 shadow-sm" data-display-form novalidate>
-                    @csrf
-                    <x-section-heading eyebrow="General enquiry" title="Send a display-only message." lead="The form validates on the front end, prevents real submission, and shows a success message." />
-                    <div class="mt-8 grid gap-5 md:grid-cols-2">
-                        <label class="field-label">
-                            Name
-                            <input type="text" name="name" class="field-input" required>
-                            <span class="field-error" data-error-for="name"></span>
-                        </label>
-                        <label class="field-label">
-                            Email
-                            <input type="email" name="email" class="field-input" required>
-                            <span class="field-error" data-error-for="email"></span>
-                        </label>
-                        <label class="field-label md:col-span-2">
-                            Topic
-                            <select name="topic" class="field-input" required>
-                                <option value="">Select a topic</option>
-                                <option>Visitor information</option>
-                                <option>Events</option>
-                                <option>Media</option>
-                                <option>Partnership</option>
-                            </select>
-                            <span class="field-error" data-error-for="topic"></span>
-                        </label>
-                        <label class="field-label md:col-span-2">
-                            Message
-                            <textarea name="message" rows="5" class="field-input" required></textarea>
-                            <span class="field-error" data-error-for="message"></span>
-                        </label>
+                <section class="rounded-3xl border border-concrete bg-heritage-cream p-6 shadow-sm">
+                    <x-section-heading eyebrow="Direct contact" title="Use the active channels." lead="These actions open your email app, WhatsApp, or Google Maps directly, without inactive form controls or stored messages." />
+                    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                        <a href="mailto:{{ $site['email'] }}?subject=Self-Guide%20Kota%20Jail%20Enquiry" class="rounded-2xl border border-concrete bg-paper-white p-5 transition hover:border-rust">
+                            <x-icon name="mail" class="h-6 w-6 text-rust" />
+                            <span class="mt-4 block font-serif text-2xl font-semibold text-deep-charcoal">Email</span>
+                            <span class="mt-2 block text-sm leading-6 text-charcoal/70">{{ $site['email'] }}</span>
+                        </a>
+                        <a href="{{ $whatsappUrl }}" target="_blank" rel="noopener noreferrer" class="rounded-2xl border border-concrete bg-paper-white p-5 transition hover:border-rust">
+                            <x-icon name="phone" class="h-6 w-6 text-rust" />
+                            <span class="mt-4 block font-serif text-2xl font-semibold text-deep-charcoal">WhatsApp</span>
+                            <span class="mt-2 block text-sm leading-6 text-charcoal/70">{{ $site['phone'] }}</span>
+                        </a>
                     </div>
-                    <!-- Backend email handling can be connected here later. This display-only version intentionally prevents submission. -->
-                    <div class="mt-6 flex flex-wrap items-center gap-4">
-                        <x-button type="submit" variant="dark" icon="mail">Preview Send</x-button>
-                        <p class="hidden rounded-full bg-rust/10 px-4 py-2 text-sm font-semibold text-rust" data-form-success>Message validated. No email was sent.</p>
-                    </div>
-                </form>
+                </section>
 
-                <form class="rounded-3xl bg-deep-charcoal p-6 text-paper-white shadow-xl" data-display-form novalidate>
-                    @csrf
-                    <x-section-heading dark eyebrow="Group visit enquiry" title="Plan a school, community, or private group visit." lead="Use this display form to collect the fields a real backend could later process." />
-                    <div class="mt-8 grid gap-5 md:grid-cols-2">
-                        <label class="field-label text-paper-white">
-                            Organisation
-                            <input type="text" name="organisation" class="field-input" required>
-                            <span class="field-error" data-error-for="organisation"></span>
-                        </label>
-                        <label class="field-label text-paper-white">
-                            Group size
-                            <input type="number" name="group_size" min="1" class="field-input" required>
-                            <span class="field-error" data-error-for="group_size"></span>
-                        </label>
-                        <label class="field-label text-paper-white">
-                            Preferred date
-                            <input type="date" name="preferred_date" class="field-input" required>
-                            <span class="field-error" data-error-for="preferred_date"></span>
-                        </label>
-                        <label class="field-label text-paper-white">
-                            Visit type
-                            <select name="visit_type" class="field-input" required>
-                                <option value="">Select visit type</option>
-                                <option>School visit</option>
-                                <option>Community group</option>
-                                <option>Architecture walk</option>
-                                <option>Event collaboration</option>
-                            </select>
-                            <span class="field-error" data-error-for="visit_type"></span>
-                        </label>
-                        <label class="field-label text-paper-white md:col-span-2">
-                            Notes
-                            <textarea name="notes" rows="4" class="field-input" required></textarea>
-                            <span class="field-error" data-error-for="notes"></span>
-                        </label>
+                <section class="rounded-3xl bg-deep-charcoal p-6 text-paper-white shadow-xl">
+                    <x-section-heading dark eyebrow="Group visits" title="Share the details that help the team prepare." lead="For school, community, or private visits, include the preferred date, group size, age range, accessibility needs, and the learning purpose of the visit." />
+                    <div class="mt-8 grid gap-4 md:grid-cols-2">
+                        @foreach ([
+                            ['icon' => 'calendar', 'title' => 'Preferred date', 'text' => 'Include one or two possible dates and arrival times.'],
+                            ['icon' => 'users', 'title' => 'Group size', 'text' => 'Share the estimated number of visitors and accompanying staff.'],
+                            ['icon' => 'accessibility', 'title' => 'Access needs', 'text' => 'Mention mobility, seating, shade, or reading-support needs.'],
+                            ['icon' => 'check-circle', 'title' => 'Visit purpose', 'text' => 'Briefly state whether the visit is for learning, heritage, media, or collaboration.'],
+                        ] as $item)
+                            <div class="rounded-2xl border border-paper-white/10 bg-paper-white/5 p-5">
+                                <x-icon :name="$item['icon']" class="h-6 w-6 text-muted-gold" />
+                                <h3 class="mt-4 font-serif text-2xl font-semibold">{{ $item['title'] }}</h3>
+                                <p class="mt-3 text-sm leading-6 text-concrete">{{ $item['text'] }}</p>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="mt-6 flex flex-wrap items-center gap-4">
-                        <x-button type="submit" variant="primary" icon="mail">Validate Enquiry</x-button>
-                        <p class="hidden rounded-full bg-paper-white/10 px-4 py-2 text-sm font-semibold text-paper-white" data-form-success>Group enquiry validated. No data was stored.</p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <x-button :href="'mailto:'.$site['email'].'?subject=Kota%20Jail%20Group%20Visit%20Enquiry'" variant="primary" icon="mail">Email Group Visit Details</x-button>
+                        <x-button :href="$whatsappUrl" variant="secondary" icon="phone">WhatsApp First</x-button>
                     </div>
-                </form>
+                </section>
 
                 <section class="rounded-3xl border border-concrete bg-paper-white p-6 shadow-sm">
-                    <p class="section-label">Event collaboration</p>
-                    <h2 class="mt-3 font-serif text-3xl font-semibold text-deep-charcoal">Host ideas with a heritage-first approach.</h2>
-                    <p class="mt-4 text-sm leading-7 text-charcoal/75">Kota Jail can be presented as a place for careful cultural programming, exhibitions, workshops, talks, and community activities. Any collaboration should respect the site history, visitor safety, and conservation requirements.</p>
+                    <p class="section-label">Collaboration</p>
+                    <h2 class="mt-3 font-serif text-3xl font-semibold text-deep-charcoal">Plan with a heritage-first approach.</h2>
+                    <p class="mt-4 text-sm leading-7 text-charcoal/75">Collaboration proposals should respect the site history, visitor safety, conservation needs, and the self-guided educational purpose of the Kota Jail experience.</p>
+                    <p class="mt-4 text-sm font-semibold text-rust">In collaboration with Polytechnic Alumni and the Self-Guide Kota Jail Team.</p>
                 </section>
             </div>
         </div>

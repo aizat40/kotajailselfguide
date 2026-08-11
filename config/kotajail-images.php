@@ -5,35 +5,35 @@ $sourceName = 'Self-Guide Kota Jail Team';
 
 $photos = [
     'corridor' => [
-        'image' => 'images/kota-jail/img_update/gambar1.jpg',
+        'image' => 'img_update/gambar1.jpg',
         'alt' => 'Historic corridor inside Kota Jail at Ayer Molek with barred cell doors, aged plaster walls, and a central stair.',
         'position' => 'center 50%',
         'width' => 1080,
         'height' => 720,
     ],
     'gate' => [
-        'image' => 'images/kota-jail/img_update/gambar2.jpg',
+        'image' => 'img_update/gambar2.jpg',
         'alt' => 'Original arched doorway at Kota Jail with black metal grillework and warm light across the old threshold.',
         'position' => 'center 46%',
         'width' => 607,
         'height' => 1080,
     ],
     'justice-display' => [
-        'image' => 'images/kota-jail/img_update/gambar3.jpg',
+        'image' => 'img_update/gambar3.jpg',
         'alt' => 'Educational display inside Kota Jail explaining the criminal justice system beside a preserved former cell door.',
         'position' => 'center 46%',
         'width' => 607,
         'height' => 1080,
     ],
     'exhibition-room' => [
-        'image' => 'images/kota-jail/img_update/gambar4.jpg',
+        'image' => 'img_update/gambar4.jpg',
         'alt' => 'Preserved exhibition room at Kota Jail with weathered walls, historical objects, and interpretive displays.',
         'position' => 'center 50%',
         'width' => 1080,
         'height' => 607,
     ],
     'qr-wall' => [
-        'image' => 'images/kota-jail/img_update/gambar5.jpg',
+        'image' => 'img_update/gambar5.jpg',
         'alt' => 'Weathered exterior wall at Kota Jail with visitor QR signage and plants along the Ayer Molek walking route.',
         'position' => 'center 48%',
         'width' => 810,
@@ -68,7 +68,6 @@ return [
         'start_tour_hero' => $image('qr-wall', 'Kota Jail route starting point', 'Exterior QR checkpoint wall at Kota Jail where visitors can begin the Ayer Molek self-guided route.', 'center 48%'),
         'tour_map_hero' => $image('gate', 'Kota Jail tour route gateway', 'Arched barred gateway inside Kota Jail, representing the transition from orientation into the self-guided route.', 'center 45%'),
         'locations_hero' => $image('corridor', 'Kota Jail route corridor', 'Historic Kota Jail corridor used to introduce the stop-by-stop route through the old Ayer Molek prison grounds.', 'center 50%'),
-        'events_hero' => $image('exhibition-room', 'Kota Jail programme room', 'Kota Jail exhibition room showing how preserved spaces can support interpretation and cultural programming.', 'center 50%'),
         'gallery_hero' => $image('exhibition-room', 'Kota Jail visual archive room', 'Preserved room inside Kota Jail with exhibition displays, weathered walls, and historical objects for visual archive browsing.', 'center 50%'),
         'visitor_hero' => $image('gate', 'Kota Jail visitor information gateway', 'Barred doorway and warm interior light at Kota Jail, used to introduce practical visitor information.', 'center 45%'),
         'plan_visit_hero' => $image('qr-wall', 'Kota Jail planning and QR wall', 'Weathered Kota Jail route wall with QR signage, helping visitors plan their self-guided walk through Ayer Molek.', 'center 48%'),
@@ -94,14 +93,6 @@ return [
         'cultural-space' => $image('exhibition-room', 'Adaptive reuse room', 'Kota Jail interior display room showing how the former prison setting can support careful cultural interpretation.', 'center 50%'),
         'heritage-architecture-zone' => $image('gate', 'Architectural gate detail', 'Arched doorway and black metal grille inside Kota Jail, showing original architectural form and controlled access.', 'center 45%'),
         'final-reflection-area' => $image('justice-display', 'Final memory point', 'Kota Jail interpretive display and preserved cell door, providing a quiet final point for reflection.', 'center 45%'),
-    ],
-
-    'events' => [
-        'heritage-night-walk' => $image('gate', 'Route after dark mood study', 'Warm light above a barred Kota Jail doorway, emphasizing the atmosphere of the preserved Ayer Molek building.', 'center 45%'),
-        'creative-reuse-exhibition' => $image('exhibition-room', 'Creative reuse exhibition', 'Preserved Kota Jail exhibition room with interpretive objects and old wall textures.', 'center 50%'),
-        'architecture-sketch-session' => $image('corridor', 'Architecture observation corridor', 'Kota Jail corridor with repeated arched openings, metal cell doors, and worn interior surfaces.', 'center 50%'),
-        'community-culture-market' => $image('qr-wall', 'Visitor route wall', 'Weathered Kota Jail exterior wall and walkway used for visitor orientation at Ayer Molek.', 'center 48%'),
-        'past-art-open-studio' => $image('exhibition-room', 'Archive exhibition room', 'Kota Jail room with display furniture and historical surfaces used for visual archive interpretation.', 'center 50%'),
     ],
 
     'gallery' => [

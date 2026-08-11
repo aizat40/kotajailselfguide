@@ -32,11 +32,6 @@
         </nav>
 
         <div class="hidden items-center gap-3 xl:flex">
-            <label class="sr-only" for="language-switcher">Language</label>
-            <select id="language-switcher" data-language-select class="rounded-full border border-paper-white/20 bg-deep-charcoal/70 px-3 py-2 text-sm text-paper-white focus:border-muted-gold focus:outline-none">
-                <option value="en">EN</option>
-                <option value="ms">BM</option>
-            </select>
             <x-button :href="route('tour.start')" variant="primary" icon="route">Start Tour</x-button>
         </div>
 

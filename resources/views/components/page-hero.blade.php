@@ -2,7 +2,7 @@
     'eyebrow' => null,
     'title',
     'lead' => null,
-    'image' => 'images/kota-jail/img_update/gambar1.jpg',
+    'image' => 'img_update/gambar1.jpg',
     'alt' => 'Kota Jail heritage photograph',
     'position' => 'center',
     'width' => null,

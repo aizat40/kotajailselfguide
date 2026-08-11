@@ -4,22 +4,16 @@
     $description = $metaDescription ?? $site['description'];
     $ogImage = asset($site['image']);
     $stops = $stops ?? config('kotajail.tour_stops');
-    $events = $events ?? config('kotajail.events');
     $galleryItems = $galleryItems ?? config('kotajail.gallery');
     $stopsForJs = array_map(fn ($stop) => array_merge($stop, [
         'url' => route('locations.show', $stop['slug']),
         'image_url' => asset($stop['image']),
     ]), $stops);
-    $eventsForJs = array_map(fn ($event) => array_merge($event, [
-        'url' => route('events.show', $event['slug']),
-        'image_url' => asset($event['image']),
-    ]), $events);
     $galleryForJs = array_map(fn ($item) => array_merge($item, [
         'image_url' => asset($item['image']),
     ]), $galleryItems);
     $clientData = [
         'stops' => $stopsForJs,
-        'events' => $eventsForJs,
         'gallery' => $galleryForJs,
         'plannerProfiles' => config('kotajail.planner_profiles'),
         'routes' => config('kotajail.tour_routes'),

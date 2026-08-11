@@ -12,12 +12,9 @@
             ['label' => 'Plan Your Visit', 'route' => 'visit.plan'],
             ['label' => 'Visitor Information', 'route' => 'visitor.info'],
             ['label' => 'Visual Archive', 'route' => 'gallery'],
-            ['label' => 'Contact', 'route' => 'contact'],
         ],
         'Support' => [
             ['label' => 'Contact', 'route' => 'contact'],
-            ['label' => 'Privacy Policy', 'route' => 'contact'],
-            ['label' => 'Terms', 'route' => 'contact'],
         ],
     ];
 @endphp
@@ -59,15 +56,10 @@
         <div class="mt-12 grid gap-6 border-t border-paper-white/10 pt-8 text-sm text-concrete lg:grid-cols-[1fr_auto] lg:items-center">
             <div class="grid gap-2">
                 <p>{{ $site['address'] }}</p>
-                <p><a href="mailto:{{ $site['email'] }}" class="hover:text-paper-white">{{ $site['email'] }}</a> · WhatsApp only: {{ $site['phone'] }}</p>
+                <p><a href="mailto:{{ $site['email'] }}" class="hover:text-paper-white">{{ $site['email'] }}</a> &middot; WhatsApp only: {{ $site['phone'] }}</p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
-                <label for="footer-language" class="sr-only">Language</label>
-                <select id="footer-language" data-language-select class="rounded-full border border-paper-white/20 bg-charcoal px-3 py-2 text-paper-white focus:border-muted-gold focus:outline-none">
-                    <option value="en">English</option>
-                    <option value="ms">Bahasa Malaysia</option>
-                </select>
-                <p>© {{ date('Y') }} Self-Guide Kota Jail. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Self-Guide Kota Jail. All rights reserved.</p>
             </div>
         </div>
     </div>

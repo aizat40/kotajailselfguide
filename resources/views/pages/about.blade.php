@@ -241,7 +241,7 @@
             <div>
                 <p class="section-label">Respectful visit</p>
                 <h2 class="mt-2 font-serif text-3xl font-semibold text-deep-charcoal">Continue into the self-guided route.</h2>
-                <p class="mt-3 max-w-2xl text-sm leading-7 text-charcoal/75">Use the route at your own pace, read the notes carefully, and replace sample interpretation with verified site material when it is available.</p>
+                <p class="mt-3 max-w-2xl text-sm leading-7 text-charcoal/75">Use the route at your own pace, read the notes carefully, and keep the visit grounded in verified site material, careful observation, and respect for the former Ayer Molek prison grounds.</p>
             </div>
             <x-button :href="route('tour.start')" variant="dark" icon="route">Start Tour</x-button>
         </div>
