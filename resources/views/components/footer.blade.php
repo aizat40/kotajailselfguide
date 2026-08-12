@@ -19,7 +19,7 @@
     ];
 @endphp
 
-<footer class="relative overflow-hidden bg-deep-charcoal pb-24 pt-16 text-paper-white lg:pb-10">
+<footer class="relative overflow-hidden bg-deep-charcoal pb-44 pt-16 text-paper-white md:pb-36 lg:pb-10">
     <div class="heritage-pattern absolute inset-0 opacity-20"></div>
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid gap-10 lg:grid-cols-[1.2fr_2fr]">

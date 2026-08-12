@@ -48,18 +48,18 @@
 <body class="min-h-screen bg-paper-white font-sans text-charcoal antialiased {{ $bodyClass ?? '' }}" data-page="{{ Route::currentRouteName() }}">
     <x-navbar :site="$site" />
 
-    <main id="main-content" class="pb-28 lg:pb-0" tabindex="-1">
+    <main id="main-content" class="relative pb-44 md:pb-36 lg:pb-0" tabindex="-1">
         @yield('content')
     </main>
 
     <x-footer :site="$site" />
     <x-mobile-navigation />
 
-    <button type="button" class="fixed bottom-28 right-4 z-[60] hidden h-12 w-12 place-items-center rounded-full bg-rust text-paper-white shadow-lg shadow-rust/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold sm:right-6 lg:bottom-8 grid" data-back-to-top aria-label="Back to top">
+    <button type="button" class="fixed bottom-32 right-4 z-[60] hidden h-12 w-12 place-items-center rounded-full bg-rust text-paper-white shadow-lg shadow-rust/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold sm:right-6 md:bottom-28 lg:bottom-8 grid" data-back-to-top aria-label="Back to top">
         <x-icon name="arrow-left" class="h-5 w-5 rotate-90" />
     </button>
 
-    <div class="fixed bottom-28 left-1/2 z-[80] hidden w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl bg-deep-charcoal px-4 py-3 text-sm font-semibold text-paper-white shadow-2xl lg:bottom-8" data-toast role="status" aria-live="polite"></div>
+    <div class="fixed bottom-32 left-1/2 z-[80] hidden w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl bg-deep-charcoal px-4 py-3 text-sm font-semibold text-paper-white shadow-2xl md:bottom-28 lg:bottom-8" data-toast role="status" aria-live="polite"></div>
 
     <script>
         window.KOTA_JAIL = {!! \Illuminate\Support\Js::from($clientData) !!};
