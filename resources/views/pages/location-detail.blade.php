@@ -39,7 +39,7 @@
     </section>
 
     <section class="section-pad bg-paper-white pt-6">
-        <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-8">
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-8">
             <article class="min-w-0">
                 <div class="grid gap-5 sm:grid-cols-3">
                     <div class="rounded-2xl border border-concrete bg-heritage-cream p-5">
@@ -140,17 +140,30 @@
                     <p class="mt-4 text-sm leading-7 text-charcoal/75">{{ $stop['accessibility'] }}</p>
                 </section>
 
-                <nav class="mt-12 grid gap-4 md:grid-cols-2" aria-label="Previous and next stops">
+                <nav class="mt-12 grid grid-cols-1 gap-4 pb-32 md:grid-cols-2 lg:pb-0" aria-label="Previous and next stops">
                     @if ($previousStop)
-                        <a href="{{ route('locations.show', $previousStop['slug']) }}" class="rounded-3xl border border-concrete bg-paper-white p-5 shadow-sm hover:border-muted-gold">
+                        <a
+                            href="{{ route('locations.show', $previousStop['slug']) }}"
+                            class="flex min-h-28 flex-col justify-center rounded-3xl border border-concrete bg-paper-white p-5 shadow-sm transition hover:border-muted-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold"
+                            aria-label="Go to previous stop: {{ $previousStop['title'] }}">
                             <span class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-rust"><x-icon name="arrow-left" class="h-4 w-4" /> Previous stop</span>
                             <span class="mt-3 block font-serif text-2xl font-semibold text-deep-charcoal">{{ $previousStop['title'] }}</span>
                         </a>
                     @endif
                     @if ($nextStop)
-                        <a href="{{ route('locations.show', $nextStop['slug']) }}" class="rounded-3xl border border-concrete bg-paper-white p-5 text-right shadow-sm hover:border-muted-gold md:col-start-2">
-                            <span class="inline-flex items-center justify-end gap-2 text-sm font-bold uppercase tracking-[0.18em] text-rust">Next stop <x-icon name="arrow-right" class="h-4 w-4" /></span>
-                            <span class="mt-3 block font-serif text-2xl font-semibold text-deep-charcoal">{{ $nextStop['title'] }}</span>
+                        <a
+                            href="{{ route('locations.show', $nextStop['slug']) }}"
+                            class="flex min-h-32 flex-col justify-center rounded-3xl border border-rust/40 bg-deep-charcoal p-6 text-left text-paper-white shadow-xl shadow-deep-charcoal/15 transition hover:-translate-y-0.5 hover:border-muted-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-muted-gold md:col-start-2 md:text-right"
+                            aria-label="Continue to next stop: {{ $nextStop['title'] }}">
+                            <span class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-muted-gold md:justify-end">
+                                Next stop
+                                <x-icon name="arrow-right" class="h-4 w-4" />
+                            </span>
+                            <span class="mt-3 block font-serif text-3xl font-semibold leading-tight">{{ $nextStop['title'] }}</span>
+                            <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-concrete md:justify-end">
+                                Continue tour
+                                <x-icon name="arrow-right" class="h-4 w-4" />
+                            </span>
                         </a>
                     @endif
                 </nav>
