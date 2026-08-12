@@ -39,7 +39,7 @@
     </section>
 
     <section class="section-pad bg-paper-white pt-6">
-        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-8">
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-  sm:px-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-8">
             <article class="min-w-0">
                 <div class="grid gap-5 sm:grid-cols-3">
                     <div class="rounded-2xl border border-concrete bg-heritage-cream p-5">
